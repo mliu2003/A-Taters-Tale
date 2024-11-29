@@ -1,37 +1,81 @@
-const steps = d3.selectAll(".step");
 const svg = d3.select("svg");
 const width = svg.node().clientWidth;
 const height = svg.node().clientHeight;
-
-svg
-  .append("circle")
-  .attr("cx", width / 2)
-  .attr("cy", height / 2)
-  .attr("r", 50)
-  .style("fill", "steelblue");
 
 const dimensions = {
   width: width / 2,
   height: height / 2,
 };
 
-drawVegetablePrices(svg, dimensions);
+const visualizations = [
+  {
+    drawFunction: drawVegetablePrices,
+    label: "Vegetable Prices Visualization",
+  },
+  { drawFunction: drawNextVisualization, label: "Second Visualization" },
+  { drawFunction: drawAnotherVisualization, label: "Third Visualization" },
+];
+
+const graphic = d3.select(".graphic");
+
+visualizations.forEach((vis, index) => {
+  graphic
+    .append("div")
+    .attr("class", "step")
+    .attr("data-step", index)
+    .text(vis.label);
+});
 
 const updateVisualization = (stepIndex) => {
-  console.log(`Step ${stepIndex + 1} active`);
-  svg
-    .select("circle")
-    .transition()
-    .duration(500)
-    .attr("r", 50 + stepIndex * 20)
-    .style("fill", d3.schemeCategory10[stepIndex]);
+  svg.selectAll("*").remove();
+  console.log(`Step ${stepIndex} active`);
+  switch (stepIndex) {
+    case 0:
+      drawVegetablePrices(svg, dimensions);
+      break;
+    case 1:
+      drawNextVisualization(svg, dimensions);
+      break;
+    case 2:
+      drawAnotherVisualization(svg, dimensions);
+      break;
+    case 3:
+      // Call another drawing function if needed
+      break;
+    default:
+      break;
+  }
 };
 
-// Intersection observer for scroll events
+function drawNextVisualization(svg, dimensions) {
+  // Replace this with your code for the second visualization
+  svg
+    .append("text")
+    .attr("x", dimensions.width / 2)
+    .attr("y", dimensions.height / 2)
+    .text("Second Visualization")
+    .style("text-anchor", "middle")
+    .style("font-size", "24px");
+}
+
+// Example function for a third visualization (step 3)
+function drawAnotherVisualization(svg, dimensions) {
+  // Replace this with your code for the third visualization
+  svg
+    .append("text")
+    .attr("x", dimensions.width / 2)
+    .attr("y", dimensions.height / 2)
+    .text("Third Visualization")
+    .style("text-anchor", "middle")
+    .style("font-size", "24px");
+}
+const steps = d3.selectAll(".step");
+
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      const index = +entry.target.dataset.step - 1;
+      const index = +entry.target.dataset.step;
+      console.log("hey ", index);
       if (entry.isIntersecting) {
         steps.classed("active", false);
         d3.select(entry.target).classed("active", true);
@@ -42,7 +86,6 @@ const observer = new IntersectionObserver(
   { threshold: 0.5 }
 );
 
-// Observe each step
 steps.each(function () {
   observer.observe(this);
 });

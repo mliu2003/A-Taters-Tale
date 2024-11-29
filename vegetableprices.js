@@ -1,6 +1,8 @@
 function drawVegetablePrices(svg, dimensions) {
   const { width, height } = dimensions;
 
+  svg.classed("step", true);
+  
   //fix
   const shift = 100;
 
@@ -13,7 +15,7 @@ function drawVegetablePrices(svg, dimensions) {
     const xScale = d3
       .scaleBand()
       .domain(vegetablePrices.map((d) => d.name))
-      .range([0, width * 2])
+      .range([0, width])
       .padding(0.1);
 
     const yScale = d3
@@ -58,8 +60,8 @@ function drawVegetablePrices(svg, dimensions) {
       .data(vegetablePrices)
       .join("circle")
       .attr("class", "dot")
-      .attr("cx", (d) => xScale(d.date))
-      .attr("cy", (d) => yScale(d.value))
+      .attr("cx", (d) => xScale(d.name))
+      .attr("cy", (d) => yScale(d.retail_price_per_lb))
       .attr("r", 5)
       .attr("fill", "steelblue")
       .attr("stroke", "white")
