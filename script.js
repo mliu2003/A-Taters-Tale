@@ -3,35 +3,37 @@ const svg = d3.select("svg");
 const width = svg.node().clientWidth;
 const height = svg.node().clientHeight;
 
-svg
-  .append("circle")
-  .attr("cx", width / 2)
-  .attr("cy", height / 2)
-  .attr("r", 50)
-  .style("fill", "steelblue");
-
 const dimensions = {
-  width: width / 2,
-  height: height / 2,
+  width: width,
+  height: height,
 };
-
-drawVegetablePrices(svg, dimensions);
 
 const updateVisualization = (stepIndex) => {
-  console.log(`Step ${stepIndex + 1} active`);
-  svg
-    .select("circle")
-    .transition()
-    .duration(500)
-    .attr("r", 50 + stepIndex * 20)
-    .style("fill", d3.schemeCategory10[stepIndex]);
+  console.log(`Step ${stepIndex} active`);
+  svg.selectAll("*").remove();
+
+  switch (stepIndex) {
+    case 0:
+      drawTitle();
+      break;
+    case 1:
+      drawVegetablePrices(svg, dimensions);
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    default:
+      break;
+  }
 };
 
-// Intersection observer for scroll events
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      const index = +entry.target.dataset.step - 1;
+      const index = +entry.target.dataset.step;
       if (entry.isIntersecting) {
         steps.classed("active", false);
         d3.select(entry.target).classed("active", true);
@@ -42,10 +44,19 @@ const observer = new IntersectionObserver(
   { threshold: 0.5 }
 );
 
-// Observe each step
 steps.each(function () {
   observer.observe(this);
 });
+
+function drawTitle() {
+  svg
+    .append("text")
+    .attr("x", width / 2)
+    .attr("y", height / 2)
+    .text("A TATER'S TALE")
+    .style("text-anchor", "middle")
+    .style("font-size", "24px");
+}
 
 // ********* data preprocessors *********//
 
