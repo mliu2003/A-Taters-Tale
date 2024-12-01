@@ -20,6 +20,7 @@ const updateVisualization = (stepIndex) => {
       drawVegetablePrices(svg, dimensions);
       break;
     case 2:
+      drawGreenhouseGasEmissions(svg, dimensions);
       break;
     case 3:
       break;
@@ -61,7 +62,7 @@ function drawTitle() {
 // ********* data preprocessors *********//
 
 // "Entity" attr has been reassigned to "name". Code field is also omitted as it is empty. Year and time has also been omitted as it is always 2010
-function greehouseGasDataPreprocessor(row) {
+function greenhouseGasDataPreprocessor(row) {
   return {
     name: row["Entity"],
     emissions_per_kg: row["GHG emissions per kilogram (Poore & Nemecek, 2018)"],
