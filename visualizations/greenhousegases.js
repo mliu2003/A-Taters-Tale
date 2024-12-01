@@ -3,7 +3,7 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
     const padding = 50;
     const circleRadius = 40; 
     const columns = 3; 
-    const maxSize = 210
+    const maxSize = 230
 
     d3.csv("data/greenhouse-gas-emissions-per-kilogram-of-food-product.csv").then((rawData) => {
         const gasEmissions = rawData.map((row) =>
@@ -59,7 +59,7 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
             .attr("y", (d, i) => positions[i].y + 100 / 2)
             .attr("text-anchor", "middle")
             .attr("font-size", "12px")
-            .attr("fill", "black")
+            .attr("fill", "white")
             .text(d => d.name);
         
         const potatoData = gasEmissions.find(d => d.name === "Potatoes");
