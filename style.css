@@ -1,49 +1,67 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  .text {
-    flex: 1;
-    padding: 20px;
-    overflow-y: scroll;
-  }
-  
-  .graphic {
-    flex: 2;
-    position: relative;
-  }
-  
-  .graphic svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .step {
-    margin: 0 0 100vh 0;
-    padding: 50px;
-    background: #f9f9f9;
-    border-left: 5px solid #ccc;
-  }
-  
-  .step.active {
-    background: #eef;
-    border-left-color: #0074D9;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-  .spuddy-img {
-    height: 200px;
-    width: auto;
-  }
-  
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.text {
+  flex: 1;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.graphic {
+  flex: 2;
+  position: relative;
+}
+
+.graphic svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.step {
+  margin: 0 0 100vh 0;
+  padding: 50px;
+  background: #f9f9f9;
+  border-left: 5px solid #ccc;
+}
+
+.step.active {
+  background: #eef;
+  border-left-color: #0074d9;
+}
+
+.spuddy-img {
+  height: 200px;
+  width: auto;
+}
+
+.popup rect {
+  fill: #f9f9f9;
+  stroke: #333;
+  stroke-width: 2px;
+}
+
+.popup text {
+  font-family: Arial, sans-serif;
+}
+
+.year-selector {
+  margin-bottom: 20px;
+}
+
+#year-select {
+  padding: 5px;
+  font-size: 16px;
+}
