@@ -36,9 +36,20 @@ function drawChips(svg, dimensions) {
             .attr('text-anchor', 'middle')
             .attr('font-size', '12px')
             .attr('fill', 'black')
+            .style('font-weight', 'bold')
+            .attr('id', 'brand-label')
             .text(brand)
             .attr('x', width/7+prevWidth + (scaledWidth/2))
-            .attr('y', -250)
+            .attr('y', 1000)
+            .style("opacity", 0);
+        g.append('text')
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '12px')
+            .attr('fill', 'black')
+            .attr('id', 'value-label')
+            .text(String(value) + 'M')
+            .attr('x', width/7+prevWidth + (scaledWidth/2))
+            .attr('y', 1000)
             .style("opacity", 0);
         prevWidth += scaledWidth + 30;
     });
@@ -58,11 +69,17 @@ function drawChips(svg, dimensions) {
             })      // Move to the centered vertical position
             .style("opacity", 1);    // Fade in the image
 
-        g.selectAll('text')
+        g.selectAll('#brand-label')
             .transition()
             .duration(1000)
             .ease(d3.easeBounceOut)
             .attr('y', offsetY + chipHeight + 115)  // Position text just below the image
+            .style("opacity", 1);  // Fade in the text
+        g.selectAll('#value-label')
+            .transition()
+            .duration(1000)
+            .ease(d3.easeBounceOut)
+            .attr('y', offsetY + chipHeight + 130)  // Position text just below the image
             .style("opacity", 1);  // Fade in the text
     }
     return animateChipBags;
