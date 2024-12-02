@@ -26,8 +26,7 @@ const updateVisualization = (stepIndex) => {
       drawPotatoDishChoices(svg, dimensions);
       break;
     case 4:
-      const animateChips = drawChips(svg, dimensions);  // Get the animation function
-      animateChips();  // Trigger the animation for chip bags
+      drawChips(svg, dimensions);
       break;
     default:
       break;
