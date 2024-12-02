@@ -23,6 +23,7 @@ const updateVisualization = (stepIndex) => {
       drawGreenhouseGasEmissions(svg, dimensions);
       break;
     case 3:
+      drawPotatoDishChoices(svg, dimensions);
       break;
     case 4:
       break;
@@ -64,8 +65,10 @@ function drawTitle() {
     .attr("y", -100)
     .attr("height", "1000px")
     .attr("width", "800px")
-    .attr("href", "images/title.jpg")
+    .attr("href", "images/title.jpg");
 }
+
+// ********* Initialization for Potato Utilization *********//
 
 // ********* data preprocessors *********//
 
@@ -94,5 +97,12 @@ function landUseDataPreprocessor(row) {
   return {
     name: row["Entity"],
     land_use_per_kg: row["Land use per kilogram (Poore & Nemecek, 2018)"],
+  };
+}
+
+function potatoPopularityDataPreprocessor(row) {
+  return {
+    dish: row["Dish"],
+    popularity: +row["Popularity"],
   };
 }
