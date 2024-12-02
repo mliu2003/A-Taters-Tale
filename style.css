@@ -15,6 +15,8 @@ body {
     flex: 1;
     padding: 20px;
     overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
   }
   
   .graphic {
@@ -42,3 +44,17 @@ body {
     border-left-color: #0074D9;
   }
   
+  .bar-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .vertical-bar {
+    width: 3px;
+    height: 95vh;
+    background-color: rgb(209, 209, 209);
+}
+
+.test {
+  box-shadow: inset 0 0 0 1000px rgb(205, 0, 0);
+}

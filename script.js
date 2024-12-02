@@ -25,6 +25,8 @@ const updateVisualization = (stepIndex) => {
     case 3:
       break;
     case 4:
+      const animateChips = drawChips(svg, dimensions);  // Get the animation function
+      animateChips();  // Trigger the animation for chip bags
       break;
     default:
       break;
