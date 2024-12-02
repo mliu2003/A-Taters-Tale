@@ -26,6 +26,7 @@ const updateVisualization = (stepIndex) => {
       drawPotatoDishChoices(svg, dimensions);
       break;
     case 4:
+      drawChips(svg, dimensions);
       break;
     default:
       break;
