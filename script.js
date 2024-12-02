@@ -50,13 +50,21 @@ steps.each(function () {
 });
 
 function drawTitle() {
+  // svg
+  //   .append("text")
+  //   .attr("x", width / 2)
+  //   .attr("y", height / 2)
+  //   .text("A TATER'S TALE")
+  //   .style("text-anchor", "middle")
+  //   .style("font-size", "24px");
+
   svg
-    .append("text")
-    .attr("x", width / 2)
-    .attr("y", height / 2)
-    .text("A TATER'S TALE")
-    .style("text-anchor", "middle")
-    .style("font-size", "24px");
+    .append("image")
+    .attr("x", 0)
+    .attr("y", -100)
+    .attr("height", "1000px")
+    .attr("width", "800px")
+    .attr("href", "images/title.jpg")
 }
 
 // ********* data preprocessors *********//

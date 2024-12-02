@@ -2,8 +2,13 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
     const { width, height } = dimensions;
     const padding = 50;
     const circleRadius = 40; 
-    const columns = 3; 
+    const columns = 4; 
     const maxSize = 230
+    console.log(width)
+    console.log(height)
+
+
+
 
     d3.csv("data/greenhouse-gas-emissions-per-kilogram-of-food-product.csv").then((rawData) => {
         const gasEmissions = rawData.map((row) =>
@@ -29,7 +34,7 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
                 row = Math.floor((i + cols_skipped) / columns);
             } 
             const x = col * (2 * circleRadius + padding) + circleRadius + padding + 150;
-            const y = row * (2 * circleRadius + padding) + circleRadius + padding;
+            const y = row * (2 * circleRadius + padding) + circleRadius - 10;
             return { x, y };
             });
         
@@ -41,7 +46,7 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
             .attr("y", (d, i) => positions[i].y)
             .attr("width", d => radiusScale(d.emissions_per_kg))
             .attr("height", d => radiusScale(d.emissions_per_kg))
-            .attr("href", "images/gas-cloud.jpeg")
+            .attr("href", "images/gas-cloud-drawing.png")
             .each(function (d, i) {
                 // Center the image based on its scaled size
                 const size = radiusScale(d.emissions_per_kg);
@@ -78,6 +83,13 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
                 .attr("stroke-width", 3);
         }
 
+        svg.append("image")
+        .attr("x", 0)
+        .attr("y", -50)
+        .attr("width", width + 50 ) // Match the canvas width
+        .attr("height", height + 100) // Match the canvas height
+        .attr("href", "images/ozone-drawing.jpg") // Path to the background image
+        .lower(); // Send the background image behind other elements
 
 
     })
