@@ -5,8 +5,8 @@ function drawChips(svg, dimensions) {
     const chipHeight = height / 8;
     const chips_data = {
         "Lays": [4271.49, 'images/layschips.png'],
-        "Ruffles": [1942.65, 'images/ruffies.png'],
-        "Pringles": [1412.04, 'images/pwingles.png'],
+        "Ruffles": [1942.65, 'images/ruffles.png'],
+        "Pringles": [1412.04, 'images/pringles.png'],
         // "Private Label": 991.5,
         "Utz": [458.77, 'images/utz.png'],
         "Cape Cod": [402.2, 'images/cape-cod.png'],
