@@ -23,6 +23,7 @@ const updateVisualization = (stepIndex) => {
       drawGreenhouseGasEmissions(svg, dimensions);
       break;
     case 3:
+      drawPotatoDishChoices(svg, dimensions);
       break;
     case 4:
       const animateChips = drawChips(svg, dimensions);  // Get the animation function
@@ -52,13 +53,21 @@ steps.each(function () {
 });
 
 function drawTitle() {
+  // svg
+  //   .append("text")
+  //   .attr("x", width / 2)
+  //   .attr("y", height / 2)
+  //   .text("A TATER'S TALE")
+  //   .style("text-anchor", "middle")
+  //   .style("font-size", "24px");
+
   svg
-    .append("text")
-    .attr("x", width / 2)
-    .attr("y", height / 2)
-    .text("A TATER'S TALE")
-    .style("text-anchor", "middle")
-    .style("font-size", "24px");
+    .append("image")
+    .attr("x", 0)
+    .attr("y", -100)
+    .attr("height", "1000px")
+    .attr("width", "800px")
+    .attr("href", "images/title.jpg");
 }
 
 // ********* data preprocessors *********//
@@ -88,5 +97,12 @@ function landUseDataPreprocessor(row) {
   return {
     name: row["Entity"],
     land_use_per_kg: row["Land use per kilogram (Poore & Nemecek, 2018)"],
+  };
+}
+
+function potatoPopularityDataPreprocessor(row) {
+  return {
+    dish: row["Dish"],
+    popularity: +row["Popularity"],
   };
 }

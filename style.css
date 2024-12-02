@@ -43,6 +43,30 @@ body {
     background: #eef;
     border-left-color: #0074D9;
   }
+
+  .spuddy-img {
+    height: 200px;
+    width: auto;
+  }
+  
+  .popup rect {
+    fill: #f9f9f9;
+    stroke: #333;
+    stroke-width: 2px;
+  }
+  
+  .popup text {
+    font-family: Arial, sans-serif;
+  }
+  
+  .year-selector {
+    margin-bottom: 20px;
+  }
+  
+  #year-select {
+    padding: 5px;
+    font-size: 16px;
+  }
   
   .bar-container {
     display: flex;
@@ -55,6 +79,3 @@ body {
     background-color: rgb(209, 209, 209);
 }
 
-.test {
-  box-shadow: inset 0 0 0 1000px rgb(205, 0, 0);
-}

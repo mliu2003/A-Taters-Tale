@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Mashed Potatoes",
+    "img": "images/mashedpotatoesimg.png",
+    "detailimg": "images/mashedpotatoesimg.png",
+    "info": "Mashed potatoes are made by mashing boiled potatoes. They are often served with gravy or butter. Mashed potatoes are a common side dish in many cultures and can be flavored with various herbs and spices.",
+    "angle": -135
+  },
+  {
+    "name": "French Fries",
+    "img": "images/frenchfryimg.png",
+    "detailimg": "images/frenchfryimg.png",
+    "info": "French fries are deep-fried potato strips. They are a popular fast food item and are often served with ketchup or mayonnaise. French fries can be seasoned with salt, pepper, or other spices.",
+    "angle": -90
+  },
+  {
+    "name": "Baked Potatoes",
+    "img": "images/bakedpotatoimg.png",
+    "detailimg": "images/bakedpotatoimg.png",
+    "info": "Baked potatoes are potatoes baked whole. They can be served with a variety of toppings such as sour cream, cheese, bacon bits, and chives. Baked potatoes are a hearty and filling dish.",
+    "angle": -45
+  }
+]
