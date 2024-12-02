@@ -207,7 +207,7 @@ function drawPotatoDishChoices(svg, dimensions) {
         let word;
         let line = [];
         let lineNumber = 0;
-        const lineHeight = 1.1; // ems
+        const lineHeight = 1.1;
         const x = textEl.attr("x");
         const y = textEl.attr("y");
         let tspan = textEl.text(null).append("tspan").attr("x", x).attr("y", y);

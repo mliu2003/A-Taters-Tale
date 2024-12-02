@@ -68,8 +68,6 @@ function drawTitle() {
     .attr("href", "images/title.jpg");
 }
 
-// ********* Initialization for Potato Utilization *********//
-
 // ********* data preprocessors *********//
 
 // "Entity" attr has been reassigned to "name". Code field is also omitted as it is empty. Year and time has also been omitted as it is always 2010
