@@ -104,3 +104,21 @@ function potatoPopularityDataPreprocessor(row) {
     popularity: +row["Popularity"],
   };
 }
+
+function PricePerYieldDataPreprocessor(row) {
+  return {
+    state: row["State"],
+    area_planted_2021: row["AreaPlanted2021"],
+    area_planted_2022: row["AreaPlanted2022"],
+    area_planted_2023: row["AreaPlanted2023"],
+    area_harvested_2021: row["AreaHarvested2021"],
+    area_harvested_2022: row["AreaHarvested2022"],
+    area_harvested_2023: row["AreaHarvested2023"],
+    yield_2021: row["Yield2021"],
+    yield_2022: row["Yield2022"],
+    yield_2023: row["Yield2023"],
+    production_2021: row["Production2021"],
+    production_2022: row["Production2022"],
+    production_2023: row["Production2023"]
+  };
+}
