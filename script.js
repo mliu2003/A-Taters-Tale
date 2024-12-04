@@ -8,6 +8,52 @@ const dimensions = {
   height: height,
 };
 
+let currIndex = 0;
+const spuddyText = [
+  {
+    title: "Welcome to A Tater's Tale",
+    desc: "This is the zeroth step of the story. (scroll here)",
+    spuddyImg: "",
+  },
+  {
+    title: "This is the first step of the story.",
+    desc: "",
+    spuddyImg: "images/spuddy-money.png",
+  },
+  {
+    title:
+      "Greenhouse gas emissions per kilogram produced of popular produce items.",
+    desc: "Potatoes produce about 0.46 kilogram of greenhouse gases per kilogram of potato produced, making it one of the lowest producers of greenhouse gases (relative to other food products).",
+    spuddyImg: "images/spuddy-sun.png",
+  },
+  {
+    title: "How to eat??",
+    desc: "Americans love to eat potatoes! Although potatoes can be enjoyed in many ways, the most common are french fries, mashed potatoes, and baked potatoes. Click on the images to learn more about each dish! Spuddy's favorite is french fries!",
+    spuddyImg: "images/spuddy-sun.png",
+  },
+  {
+    title:
+      "Chips are among the most popular ways potatoes are enjoyed by consumers.",
+    desc: "Based on sales (millions of USD), potato chip lovers around the world predominantly enjoy Lay's, followed by Ruffles, Pringles, and other more niche brands.",
+    spuddyImg: "",
+  },
+];
+
+d3.selectAll("div.step")
+  .append("img")
+  .attr("src", "./images/spuddy-sun.png")
+  .attr("alt", "Click for more info!")
+  .style("width", "100px")
+  .style("height", "auto")
+  .on("click", () => {
+    console.log("click!");
+    console.log(currIndex);
+    console.log(spuddyText[0].title);
+  });
+d3.selectAll("div.step").each(() => {
+    console.log("pog", this);
+})
+
 const updateVisualization = (stepIndex) => {
   console.log(`Step ${stepIndex} active`);
   svg.selectAll("*").remove();
@@ -41,6 +87,7 @@ const observer = new IntersectionObserver(
         steps.classed("active", false);
         d3.select(entry.target).classed("active", true);
         updateVisualization(index);
+        currIndex = index;
       }
     });
   },
@@ -52,14 +99,6 @@ steps.each(function () {
 });
 
 function drawTitle() {
-  // svg
-  //   .append("text")
-  //   .attr("x", width / 2)
-  //   .attr("y", height / 2)
-  //   .text("A TATER'S TALE")
-  //   .style("text-anchor", "middle")
-  //   .style("font-size", "24px");
-
   svg
     .append("image")
     .attr("x", 0)
