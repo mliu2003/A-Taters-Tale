@@ -10,25 +10,52 @@ const dimensions = {
 
 const updateVisualization = (stepIndex) => {
   console.log(`Step ${stepIndex} active`);
-  svg.selectAll("*").remove();
 
   switch (stepIndex) {
-    case 0:
+    case 0: // Title
+      svg.selectAll("*").remove();
       drawTitle();
       break;
-    case 1:
-      drawVegetablePrices(svg, dimensions);
-      break;
-    case 2:
+    case 1: // Greenhouse Gases
+      svg.selectAll("*").remove();
       drawGreenhouseGasEmissions(svg, dimensions);
       break;
-    case 3:
+    case 2: // Potato Type
+      svg.selectAll("*").remove();
+      break;
+    case 3: // PPA vs VPA
+      removeTruckOrAll(svg, dimensions);
+      drawVegetablePrices(svg, dimensions);
+      break;
+    case 4: // Truck
+      drawTruck(svg, dimensions);
+      break;
+    case 5: // Production by State
+      removeTruckOrAll(svg, dimensions);
+      break;
+    case 6: // Price by Crop
+      svg.selectAll("*").remove();
+      drawVegetablePrices(svg, dimensions);
+      break;
+    case 7: // Potato Dishes
+      svg.selectAll("*").remove();
+      break;
+    case 8: // How to eat?
+      svg.selectAll("*").remove();
       drawPotatoDishChoices(svg, dimensions);
       break;
-    case 4:
+    case 9: // Chips
+      svg.selectAll("*").remove();
       drawChips(svg, dimensions);
       break;
+    case 10: // Nutrition Facts
+      svg.selectAll("*").remove();
+      break;
+    case 11: // Goodbye
+      svg.selectAll("*").remove();
+      break;
     default:
+      svg.selectAll("*").remove();
       break;
   }
 };
@@ -52,14 +79,6 @@ steps.each(function () {
 });
 
 function drawTitle() {
-  // svg
-  //   .append("text")
-  //   .attr("x", width / 2)
-  //   .attr("y", height / 2)
-  //   .text("A TATER'S TALE")
-  //   .style("text-anchor", "middle")
-  //   .style("font-size", "24px");
-
   svg
     .append("image")
     .attr("x", 0)
