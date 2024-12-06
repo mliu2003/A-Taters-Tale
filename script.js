@@ -105,3 +105,45 @@ function potatoPopularityDataPreprocessor(row) {
     popularity: +row["Popularity"],
   };
 }
+
+function PricePerYieldDataPreprocessor(row) {
+  return {
+    state: row["State"],
+    area_planted_2021: row["AreaPlanted2021"],
+    area_planted_2022: row["AreaPlanted2022"],
+    area_planted_2023: row["AreaPlanted2023"],
+    area_harvested_2021: row["AreaHarvested2021"],
+    area_harvested_2022: row["AreaHarvested2022"],
+    area_harvested_2023: row["AreaHarvested2023"],
+    yield_2021: row["Yield2021"],
+    yield_2022: row["Yield2022"],
+    yield_2023: row["Yield2023"],
+    production_2021: row["Production2021"],
+    production_2022: row["Production2022"],
+    production_2023: row["Production2023"],
+    production_cwt_2021: row["ProductionCWT2021"],
+    total_seed_2021: row["TotalSeed2021"],
+    seed_feed_2021: row["SeedFeed2021"],
+    shrink_loss_2021: row["ShrinkLoss2021"],
+    sold_2021: row["Sold2021"],
+    price_cwt_2022:row["PriceCWT2022"],
+    production_value_2022: row["ProductionValue2022"],
+    sales_value_2022: row["SalesValue2022"],
+    production_cwt_2022: row["ProductionCWT2022"],
+    total_seed_2022: row["TotalSeed2022"],
+    seed_feed_2022: row["SeedFeed2022"],
+    shrink_loss_2021: row["ShrinkLoss2022"],
+    sold_2022: row["Sold2022"],
+    price_cwt_2023:row["PriceCWT2023"],
+    production_value_2023: row["ProductionValue2023"],
+    sales_value_2023: row["SalesValue2023"],
+    production_cwt_2023: row["ProductionCWT2023"],
+    total_seed_2023: row["TotalSeed2023"],
+    seed_feed_2023: row["SeedFeed2023"],
+    shrink_loss_2023: row["ShrinkLoss2023"],
+    sold_2023: row["Sold2023"],
+    price_cwt_2023:row["PriceCWT2023"],
+    production_value_2023: row["ProductionValue2023"],
+    sales_value_2023: row["SalesValue2023"]
+  };
+}
