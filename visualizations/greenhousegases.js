@@ -91,18 +91,18 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
         }
 
         svg.append("image")
-        .attr("x", 0)
-        .attr("y", height * 0.6)
-        .attr("width", width * 1.2)
-        .attr("height", height ) 
-        .attr("href", "images/half-earth.png") 
-        .lower()
+            .attr("x", 0)
+            .attr("y", height * 0.6)
+            .attr("width", width * 1.2)
+            .attr("height", height ) 
+            .attr("href", "images/half-earth.png") 
+            .lower()
 
         svg.append("rect")
-        .attr("width", "100%")
-        .attr("height", "100%")
-        .attr("fill", "black")
-        .lower()
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", "black")
+            .lower()
         
   
 
