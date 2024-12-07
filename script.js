@@ -1,7 +1,23 @@
 const steps = d3.selectAll(".step");
 const svg = d3.select("svg");
+const graphic = d3.select(".graphic");
 const width = svg.node().clientWidth;
 const height = svg.node().clientHeight;
+
+const spuddyText = [
+  "Hi there! My name is Spuddy! I'll be your personal potato buddy today! Try scrolling to see some visualizations, and be sure to click on me for more info!",
+  "slide 1",
+  "slide 2",
+  "slide 3",
+  "slide 4",
+  "slide 5",
+  "slide 6",
+  "slide 7",
+  "slide 8",
+  "slide 9",
+  "slide 10",
+  "slide 11",
+];
 
 const dimensions = {
   width: width,
@@ -13,14 +29,85 @@ const clear = () => {
   d3.select(".radio-buttons").remove();
 };
 
+const clearTitleOrAll = () => {
+  d3.select(".radio-buttons").remove();
+  const title = svg.select(".title");
+  const { width, height } = dimensions;
+  graphic.style("background-color", "khaki");
+  d3.select(".radio-buttons").remove();
+  if (title.empty()) {
+    svg.selectAll("*").remove();
+  } else {
+    title
+      .transition()
+      .duration(1000)
+      .ease(d3.easeCubicInOut)
+      .attr("transform", `translate(0, ${-height})`)
+      .remove();
+  }
+};
+
+let clickedSpuddy = false;
+
+const updateSpuddy = (stepIndex) => {
+  d3.selectAll(".spuddy").remove();
+  const spuddyContainer = d3.select(".spuddyContainer");
+  const spuddy = spuddyContainer.append("div").attr("class", "spuddy");
+  spuddy
+    .style("position", "absolute")
+    .style("bottom", "0px")
+    .style("display", "flex")
+    .style("flex-direction", "column")
+    .style("z-index", 1);
+  if (stepIndex == 0 && !clickedSpuddy) {
+    spuddy
+      .append("img")
+      .attr("class", "clickme")
+      .attr("src", "images/clickme.png")
+      .attr("width", "200px");
+  }
+
+  const spuddyRow = spuddy.append("div").style("display", "flex");
+
+  const spuddyClick = spuddyRow
+    .append("img")
+    .attr("class", "spuddyclick")
+    .attr("src", "images/spuddyclick.png")
+    .attr("width", "200px");
+
+  const textBox = spuddyRow
+    .append("div")
+    .style("background-color", "white")
+    .style("border", "1px solid black")
+    .style("border-radius", "20px")
+    .style("box-shadow", "0px 4px 6px rgba(0, 0, 0, 0.1)")
+    .style("opacity", 0);
+
+  textBox
+    .append("p")
+    .text(spuddyText[stepIndex])
+    .style("margin", "0")
+    .style("padding", "10px")
+    .style("color", "black");
+
+  spuddyClick.style("cursor", "pointer").on("click", function () {
+    textBox.style("opacity", textBox.style("opacity") == 1 ? 0 : 1);
+    if (!clickedSpuddy) {
+      clickedSpuddy = true;
+      d3.selectAll(".clickme").remove();
+    }
+  });
+};
+
 const updateVisualization = (stepIndex) => {
+  updateSpuddy(stepIndex);
   switch (stepIndex) {
     case 0: // Title
       clear();
       drawTitle();
       break;
     case 1: // Greenhouse Gases
-      clear();
+      clearTitleOrAll();
       drawGreenhouseGasEmissions(svg, dimensions);
       break;
     case 2: // Potato Type
@@ -103,13 +190,16 @@ steps.each(function () {
 });
 
 function drawTitle() {
+  graphic.style("background-color", "rgb(140, 82, 45)");
+
   svg
     .append("image")
+    .attr("class", "title")
     .attr("x", 0)
     .attr("y", -100)
-    .attr("height", "1000px")
-    .attr("width", "800px")
-    .attr("href", "images/title.jpg");
+    .attr("height", height)
+    .attr("width", width)
+    .attr("href", "images/title.png");
 }
 
 // ********* data preprocessors *********//

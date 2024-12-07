@@ -9,6 +9,14 @@ body {
   flex-direction: row;
 }
 
+.spuddyContainer {
+  pointer-events: none;
+}
+
+.spuddyclick {
+  pointer-events: auto;
+}
+
 .progressbar {
   width: 40px;
   height: 100vh;
@@ -59,6 +67,10 @@ body {
 
 .step.active {
   background: #eef;
+}
+
+.scrollGuide {
+    color: green
 }
 
 .spuddy-img {
