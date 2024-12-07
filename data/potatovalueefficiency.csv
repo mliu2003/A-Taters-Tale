@@ -1,0 +1,14 @@
+﻿State,Yield(cwt/acre),Price(dollar/cwt),Area(acre),Seeding(cwt),YieldValue(dollar/acre),PlantingCost(dollar/acre)
+California ,435,24.9,23,(D),10831.5,#VALUE!
+Colorado ,385,11.4,55,"1,458",4389,3787.012987
+Florida ,300,18.2,20,(D),5460,#VALUE!
+Idaho ,435,8.46,330,"8,125",3680.1,18678.16092
+Maine ,320,11.7,53,"1,071",3744,3346.875
+Michigan ,440,13.1,50,"1,267",5764,2879.545455
+Minnesota ,415,10.7,46,975,4440.5,2349.39759
+Nebraska ,490,11.8,22,662,5782,1351.020408
+North Dakota ,350,11.5,76,"1,665",4025,4757.142857
+Oregon ,620,9.02,43,"1,071",5592.4,1727.419355
+Texas ,460,14.7,15,(D),6762,#VALUE!
+Washington ,630,7.75,165,"3,780",4882.5,6000
+Wisconsin ,420,13,68,"1,595",5460,3797.619048
