@@ -59,6 +59,7 @@ function drawChips(svg, dimensions) {
     .data(Object.entries(chips_data))
     .transition()
     .duration(1000) // Animation duration
+    .delay((d, i) => i * 100)
     .ease(d3.easeBounceOut) // Ease effect (bounce when falling)
     .attr("y", function (d, i) {
       var brand = d[0];
@@ -72,11 +73,13 @@ function drawChips(svg, dimensions) {
   g.selectAll("#brand-label")
     .transition()
     .duration(1000)
+    .delay((d, i) => i * 100)
     .ease(d3.easeBounceOut)
     .attr("y", offsetY + chipHeight + 115) // Position text just below the image
     .style("opacity", 1); // Fade in the text
   g.selectAll("#value-label")
     .transition()
+    .delay((d, i) => i * 100)
     .duration(1000)
     .ease(d3.easeBounceOut)
     .attr("y", offsetY + chipHeight + 130) // Position text just below the image
