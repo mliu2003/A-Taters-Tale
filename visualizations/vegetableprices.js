@@ -89,19 +89,20 @@ function update(svg, dimensions, vegetables, money) {
       .style("font-weight", "bold")
       .attr("id", "brand-label")
       .text((money / value).toFixed(2) + "lbs. of " + name)
-      .attr("x", 150 + prevWidth)
+      .attr("x", (width / 7) + prevWidth)
       .attr("y", (height * 3) / 4)
       .style("opacity", 1);
 
     const numToShow = Math.floor(money / value / (money == 100 ? 5 : money == 50 ? 4 : 1));
     const img_g = g.append("g");
+    const size = width / 20;
     for (let i = 0; i < numToShow; i++) {
       const img = img_g
         .append("image")
         .attr("href", imagePath)
-        .attr("width", 100)
-        .attr("height", 100)
-        .attr("x", 50 + prevWidth + (i % 3) * 50)
+        .attr("width", width / 10)
+        .attr("height", height / 10)
+        .attr("x", size + prevWidth + (i % 3) * size)
         .attr("y", -200)
         .style("opacity", 0);
       img
@@ -116,6 +117,6 @@ function update(svg, dimensions, vegetables, money) {
         .style("opacity", 1);
     }
 
-    prevWidth += 250;
+    prevWidth += width / 4;
   });
 }

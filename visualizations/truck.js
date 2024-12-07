@@ -4,6 +4,7 @@ function drawTruck(svg, dimensions) {
   const scaledWidth = width;
   const scaledHeight = height;
   const old = svg.selectAll("*:not(.truck)");
+  d3.select(".radio-buttons").remove();
   old.transition().duration(1500).style("opacity", 0);
   var g = svg.append("g").attr("class", "truck");
   g.append("image")
