@@ -8,21 +8,28 @@ const dimensions = {
   height: height,
 };
 
-const updateVisualization = (stepIndex) => {
-  console.log(`Step ${stepIndex} active`);
+const clear = () => {
+  svg.selectAll("*").remove();
+  d3.select(".radio-buttons").remove();
+};
 
+const updateVisualization = (stepIndex) => {
   switch (stepIndex) {
     case 0: // Title
-      svg.selectAll("*").remove();
+      clear();
       drawTitle();
       break;
     case 1: // Greenhouse Gases
-      svg.selectAll("*").remove();
+      clear();
       drawGreenhouseGasEmissions(svg, dimensions);
       break;
     case 2: // Potato Type
+<<<<<<< HEAD
       svg.selectAll("*").remove();
       drawPotatoTypes(svg, dimensions);
+=======
+      clear();
+>>>>>>> main
       break;
     case 3: // PPA vs VPA
       removeTruckOrAll(svg, dimensions);
@@ -35,29 +42,47 @@ const updateVisualization = (stepIndex) => {
       removeTruckOrAll(svg, dimensions);
       break;
     case 6: // Price by Crop
-      svg.selectAll("*").remove();
+      clear();
       drawVegetablePrices(svg, dimensions);
       break;
     case 7: // Potato Dishes
-      svg.selectAll("*").remove();
+      clear();
+      drawOverview(svg, dimensions);
       break;
     case 8: // How to eat?
-      svg.selectAll("*").remove();
+      clear();
       drawPotatoDishChoices(svg, dimensions);
       break;
     case 9: // Chips
-      svg.selectAll("*").remove();
+      clear();
       drawChips(svg, dimensions);
       break;
     case 10: // Nutrition Facts
-      svg.selectAll("*").remove();
+      clear();
       break;
     case 11: // Goodbye
-      svg.selectAll("*").remove();
+      clear();
       break;
     default:
-      svg.selectAll("*").remove();
+      clear();
       break;
+  }
+
+  d3.selectAll(".progBarImg").remove();
+
+  const progBar = d3.select(".progressbar");
+
+  for (let i = 0; i < 12; i++) {
+    const img = progBar
+      .append("img")
+      .attr("class", "progBarImg")
+      .attr("src", "images/spuddy-sun.png")
+      .attr("width", 30)
+      .attr("height", 30)
+      .style("opacity", 0.3);
+    if (stepIndex == i) {
+      img.style("opacity", 1).style("background-color", "blue"); //change this
+    }
   }
 };
 
@@ -146,7 +171,7 @@ function pricePerYieldDataPreprocessor(row) {
     seed_feed_2021: row["SeedFeed2021"],
     shrink_loss_2021: row["ShrinkLoss2021"],
     sold_2021: row["Sold2021"],
-    price_cwt_2022:row["PriceCWT2022"],
+    price_cwt_2022: row["PriceCWT2022"],
     production_value_2022: row["ProductionValue2022"],
     sales_value_2022: row["SalesValue2022"],
     production_cwt_2022: row["ProductionCWT2022"],
@@ -154,7 +179,7 @@ function pricePerYieldDataPreprocessor(row) {
     seed_feed_2022: row["SeedFeed2022"],
     shrink_loss_2021: row["ShrinkLoss2022"],
     sold_2022: row["Sold2022"],
-    price_cwt_2023:row["PriceCWT2023"],
+    price_cwt_2023: row["PriceCWT2023"],
     production_value_2023: row["ProductionValue2023"],
     sales_value_2023: row["SalesValue2023"],
     production_cwt_2023: row["ProductionCWT2023"],
@@ -162,9 +187,9 @@ function pricePerYieldDataPreprocessor(row) {
     seed_feed_2023: row["SeedFeed2023"],
     shrink_loss_2023: row["ShrinkLoss2023"],
     sold_2023: row["Sold2023"],
-    price_cwt_2023:row["PriceCWT2023"],
+    price_cwt_2023: row["PriceCWT2023"],
     production_value_2023: row["ProductionValue2023"],
-    sales_value_2023: row["SalesValue2023"]
+    sales_value_2023: row["SalesValue2023"],
   };
 }
 
