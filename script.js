@@ -3,6 +3,21 @@ const svg = d3.select("svg");
 const width = svg.node().clientWidth;
 const height = svg.node().clientHeight;
 
+const spuddyText = [
+  "Welcome to A Tater's Tale! My name is Spuddy, and I'll be your personal potato buddy today! Try scrolling to see some visualizations, and be sure to click on me for more info!",
+  "slide 1",
+  "slide 2",
+  "slide 3",
+  "slide 4",
+  "slide 5",
+  "slide 6",
+  "slide 7",
+  "slide 8",
+  "slide 9",
+  "slide 10",
+  "slide 11",
+];
+
 const dimensions = {
   width: width,
   height: height,
@@ -13,7 +28,64 @@ const clear = () => {
   d3.select(".radio-buttons").remove();
 };
 
+let clickedSpuddy = false;
+
+const updateSpuddy = (stepIndex) => {
+  d3.selectAll(".spuddy").remove();
+  const spuddyContainer = d3.select(".spuddyContainer");
+  const spuddy = spuddyContainer.append("div").attr("class", "spuddy");
+  spuddy
+    .style("position", "absolute")
+    .style("bottom", "0px")
+    .style("display", "flex")
+    .style("flex-direction", "column")
+    .style("z-index", 1);
+  if (stepIndex == 0 && !clickedSpuddy) {
+    spuddy
+      .append("img")
+      .attr("class", "clickme")
+      .attr("src", "images/clickme.png")
+      .attr("width", "20%")
+      .attr("height", "20%");
+  }
+
+  const spuddyRow = spuddy.append("div").style("display", "flex");
+
+  const spuddyClick = spuddyRow
+    .append("img")
+    .attr("class", "spuddyclick")
+    .attr("src", "images/spuddyclick.png")
+    .attr("width", "20%")
+    .attr("height", "20%");
+
+  const textBox = spuddyRow
+    .append("div")
+    .style("background-color", "white")
+    .style("width", "25vh")
+    .style("height", "20vh")
+    .style("border", "1px solid black")
+    .style("border-radius", "20px")
+    .style("box-shadow", "0px 4px 6px rgba(0, 0, 0, 0.1)")
+    .style("opacity", 0);
+
+  textBox
+    .append("p")
+    .text(spuddyText[stepIndex])
+    .style("margin", "0")
+    .style("padding", "10px")
+    .style("color", "black");
+
+  spuddyClick.style("cursor", "pointer").on("click", function () {
+    textBox.style("opacity", textBox.style("opacity") == 1 ? 0 : 1);
+    if (!clickedSpuddy) {
+        clickedSpuddy = true;
+        d3.selectAll(".clickme").remove();
+    }
+  });
+};
+
 const updateVisualization = (stepIndex) => {
+  updateSpuddy(stepIndex);
   switch (stepIndex) {
     case 0: // Title
       clear();

@@ -28,7 +28,6 @@ function removeTruckOrAll(svg, dimensions) {
   const { width, height } = dimensions;
   d3.select(".radio-buttons").remove();
   const truck = svg.select(".truck");
-  console.log("testing")
   if (truck.empty()) {
     svg.selectAll("*").remove();
   } else {
@@ -37,6 +36,7 @@ function removeTruckOrAll(svg, dimensions) {
       .duration(1000)
       .ease(d3.easeCubicInOut)
       .attr("transform", `translate(${-width}, 0)`)
-      .style("opacity", 0).remove();
+      .style("opacity", 0)
+      .remove();
   }
 }
