@@ -25,6 +25,7 @@ const updateVisualization = (stepIndex) => {
       break;
     case 2: // Potato Type
       clear();
+      drawPotatoTypes(svg, dimensions);
       break;
     case 3: //VPA vs PPA
       clear();
@@ -184,5 +185,12 @@ function potatoValueDataPreprocessor(row) {
     seeding: +row["Seeding(cwt)"],
     yieldValue: +row["YieldValue(dollar/acre)"],
     plantingCost: +row["PlantingCost(dollar/acre)"],
+  };
+}
+
+function potatoTypesPreprocessor(row) {
+  return {
+    name: row["Variety"],
+    value: Number(row["AcresPlanted"]),
   };
 }
