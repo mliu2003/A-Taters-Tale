@@ -24,12 +24,8 @@ const updateVisualization = (stepIndex) => {
       drawGreenhouseGasEmissions(svg, dimensions);
       break;
     case 2: // Potato Type
-<<<<<<< HEAD
-      svg.selectAll("*").remove();
-      drawPotatoTypes(svg, dimensions);
-=======
       clear();
->>>>>>> main
+      drawPotatoTypes(svg, dimensions);
       break;
     case 3: // PPA vs VPA
       removeTruckOrAll(svg, dimensions);
