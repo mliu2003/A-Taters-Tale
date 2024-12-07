@@ -1,10 +1,11 @@
 const steps = d3.selectAll(".step");
 const svg = d3.select("svg");
+const graphic = d3.select(".graphic");
 const width = svg.node().clientWidth;
 const height = svg.node().clientHeight;
 
 const spuddyText = [
-  "Welcome to A Tater's Tale! My name is Spuddy, and I'll be your personal potato buddy today! Try scrolling to see some visualizations, and be sure to click on me for more info!",
+  "Hi there! My name is Spuddy! I'll be your personal potato buddy today! Try scrolling to see some visualizations, and be sure to click on me for more info!",
   "slide 1",
   "slide 2",
   "slide 3",
@@ -26,6 +27,18 @@ const dimensions = {
 const clear = () => {
   svg.selectAll("*").remove();
   d3.select(".radio-buttons").remove();
+};
+
+const clearTitle = () => {
+  const { width, height } = dimensions;
+  graphic.style("background-color", "khaki");
+  d3.select(".radio-buttons").remove();
+  d3.selectAll(".title")
+    .transition()
+    .duration(1000)
+    .ease(d3.easeCubicInOut)
+    .attr("transform", `translate(0, ${-height})`)
+    .remove();
 };
 
 let clickedSpuddy = false;
@@ -78,8 +91,8 @@ const updateSpuddy = (stepIndex) => {
   spuddyClick.style("cursor", "pointer").on("click", function () {
     textBox.style("opacity", textBox.style("opacity") == 1 ? 0 : 1);
     if (!clickedSpuddy) {
-        clickedSpuddy = true;
-        d3.selectAll(".clickme").remove();
+      clickedSpuddy = true;
+      d3.selectAll(".clickme").remove();
     }
   });
 };
@@ -92,7 +105,7 @@ const updateVisualization = (stepIndex) => {
       drawTitle();
       break;
     case 1: // Greenhouse Gases
-      clear();
+      clearTitle();
       drawGreenhouseGasEmissions(svg, dimensions);
       break;
     case 2: // Potato Type
@@ -175,13 +188,16 @@ steps.each(function () {
 });
 
 function drawTitle() {
+  graphic.style("background-color", "rgb(140, 82, 45)");
+
   svg
     .append("image")
+    .attr("class", "title")
     .attr("x", 0)
     .attr("y", -100)
-    .attr("height", "1000px")
-    .attr("width", "800px")
-    .attr("href", "images/title.jpg");
+    .attr("height", height)
+    .attr("width", width)
+    .attr("href", "images/title.png");
 }
 
 // ********* data preprocessors *********//
