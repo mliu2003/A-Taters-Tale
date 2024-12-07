@@ -79,7 +79,7 @@ const updateVisualization = (stepIndex) => {
       .attr("height", 30)
       .style("opacity", 0.3);
     if (stepIndex == i) {
-      img.style("opacity", 1).style("background-color", "blue"); //change this
+      img.style("opacity", 1).style("background-color", "rgb(140, 82, 45)");
     }
   }
 };

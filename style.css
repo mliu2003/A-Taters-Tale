@@ -12,7 +12,7 @@ body {
 .progressbar {
   width: 40px;
   height: 100vh;
-  background-color: green;
+  background-color: #7f4022;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -32,7 +32,7 @@ body {
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
-  background-color: chocolate;
+  background-color: rgb(140, 82, 45);
 }
 
 .graphic {
@@ -40,7 +40,7 @@ body {
   position: relative;
   background-color: khaki;
   border: 20px solid;
-  border-color: goldenrod;
+  border-color: rgb(140, 82, 45);
 }
 
 .graphic svg {
