@@ -38,6 +38,9 @@ body {
 .graphic {
   flex: 2;
   position: relative;
+  background-color: khaki;
+  border: 20px solid;
+  border-color: goldenrod;
 }
 
 .graphic svg {
