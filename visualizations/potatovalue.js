@@ -61,7 +61,11 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .attr("class", "d3-tip")
       .offset([-12, 0])
       .html(function (event, d) {
-        return "<h5>" + d["State"] + "</td></tr></tbody></table>";
+        return `<div>
+        <h5>${d.state}</h5>
+        <p>Planting Cost: $${d.plantingCost.toFixed(2)}</p>
+        <p>Yield Value: $${d.yieldValue.toFixed(2)}</p>
+      </div>`;
       });
 
     var margin = { top: 40, right: 40, bottom: 60, left: 70 },
@@ -165,8 +169,8 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .attr("height", dimensions.height)
       .attr("id", "potato-value-scatterplot")
       .style("transform", "scale(0.5)")
-      .style("opacity", 0);
-
+      .style("opacity", 0)
+      .call(toolTip);
     svgScatterplot
       .transition()
       .duration(1500)
