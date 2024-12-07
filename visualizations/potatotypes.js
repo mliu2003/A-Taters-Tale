@@ -5,24 +5,31 @@ function drawPotatoTypes(svg, dimensions) {
   const offsetX = (width - chartWidth) / 2;
   const offsetY = (height - chartHeight) / 2;
 
-  d3.csv("data/potatotypes.csv").then((rawData) => {
-    var map = new Map();
-    for (let i = 0; i < rawData.length; i++) {
-      var curr_variety = rawData[i]["Variety"];
-      var curr_val = Number(rawData[i]["Number of Stores"]);
-      if (map.has(curr_variety)) {
-        map.set(curr_variety, map.get(curr_variety) + curr_val);
-      } else {
-        map.set(curr_variety, curr_val);
-      }
-    }
+  d3.csv("data/potatotypes2023.csv").then((rawData) => {
+    // var map = new Map();
+    // for (let i = 0; i < rawData.length; i++) {
+    //   var curr_variety = rawData[i]["Variety"];
+    //   var curr_val = Number(rawData[i]["Number of Stores"]);
+    //   if (map.has(curr_variety)) {
+    //     map.set(curr_variety, map.get(curr_variety) + curr_val);
+    //   } else {
+    //     map.set(curr_variety, curr_val);
+    //   }
+    // }
 
-    map = new Map([...map.entries()].sort((a, b) => b[1] - a[1]));
-    console.log(map);
-    const parsedData = Array.from(map.entries()).map(([key, value]) => ({
-      name: key,
-      value: value,
-    }));
+    // map = new Map([...map.entries()].sort((a, b) => b[1] - a[1]));
+    // console.log(map);
+    // const parsedData = Array.from(map.entries()).map(([key, value]) => ({
+    //   name: key,
+    //   value: value,
+    // }));
+
+    const parsedData = rawData.map((row) =>
+        potatoTypesPreprocessor(row)
+    );
+
+    console.log(parsedData)
+    console.log(d3.max(parsedData, (d) => d.value))
 
     const yScale = d3
       .scaleLinear()

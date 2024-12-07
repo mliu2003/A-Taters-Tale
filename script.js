@@ -191,7 +191,7 @@ function pricePerYieldDataPreprocessor(row) {
 
 function potatoTypesPreprocessor(row) {
   return {
-    variety: row["Variety"],
-    num_stores: row["Number of Stores"]
+    name: row["Variety"],
+    value: Number(row["AcresPlanted"])
   };
 }
