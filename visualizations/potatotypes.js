@@ -6,23 +6,6 @@ function drawPotatoTypes(svg, dimensions) {
   const offsetY = (height - chartHeight) / 2;
 
   d3.csv("data/potatotypes2023.csv").then((rawData) => {
-    // var map = new Map();
-    // for (let i = 0; i < rawData.length; i++) {
-    //   var curr_variety = rawData[i]["Variety"];
-    //   var curr_val = Number(rawData[i]["Number of Stores"]);
-    //   if (map.has(curr_variety)) {
-    //     map.set(curr_variety, map.get(curr_variety) + curr_val);
-    //   } else {
-    //     map.set(curr_variety, curr_val);
-    //   }
-    // }
-
-    // map = new Map([...map.entries()].sort((a, b) => b[1] - a[1]));
-    // console.log(map);
-    // const parsedData = Array.from(map.entries()).map(([key, value]) => ({
-    //   name: key,
-    //   value: value,
-    // }));
 
     const parsedData = rawData.map((row) =>
         potatoTypesPreprocessor(row)
@@ -45,8 +28,8 @@ function drawPotatoTypes(svg, dimensions) {
     const extraPad = 40;
     svg
       .append("rect")
-      .attr("fill", "white")
-      .attr("opacity", 0.5)
+      .attr("fill", "none")
+      // .attr("opacity", 0.5)
       .attr("height", chartHeight + 2 * extraPad)
       .attr("width", chartWidth + 3 * extraPad)
       .attr(
@@ -80,7 +63,7 @@ function drawPotatoTypes(svg, dimensions) {
       // .attr("width", xScale.bandwidth())
       .attr("width", chartWidth / 4)
       .attr("height", (d) => chartHeight - yScale(d.value))
-      .attr("href", "images/taller-sprout.png");
+      .attr("href", "images/tallest-sprout.png");
       // object-fit: fill doesn't seem to be working as expected. will look into more later
 
     chart
@@ -94,13 +77,27 @@ function drawPotatoTypes(svg, dimensions) {
       .attr("font-size", "12px")
       .attr("fill", "black");
 
-    svg
-      .append("image")
+      svg.append("image")
       .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", width)
-      .attr("height", height)
-      .attr("href", "images/farm-sky-background.jpg")
-      .lower();
+      .attr("y", height/9)
+      .attr("width", width * 1.2)
+      .attr("height", height ) 
+      .attr("href", "images/field.png") 
+      .lower()
+
+  svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .attr("fill", "lightblue")
+      .lower()
+
+    // svg
+    //   .append("image")
+    //   .attr("x", 0)
+    //   .attr("y", 0)
+    //   .attr("width", width)
+    //   .attr("height", height)
+    //   .attr("href", "images/farm-sky-background.jpg")
+    //   .lower();
   });
 }
