@@ -26,8 +26,8 @@ const updateVisualization = (stepIndex) => {
     case 2: // Potato Type
       clear();
       break;
-    case 3:
-      svg.selectAll("*").remove();
+    case 3: //VPA vs PPA
+      clear();
       d3.select("#map-container").selectAll("*").remove();
       removeTruckOrAll(svg, dimensions);
       drawPotatoValueEfficiency(svg, dimensions);

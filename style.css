@@ -63,6 +63,7 @@ body {
   width: auto;
 }
 
+/* Step 8 */
 .popup rect {
   fill: #f9f9f9;
   stroke: #333;
@@ -73,14 +74,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.year-selector {
-  margin-bottom: 20px;
-}
-
-#year-select {
-  padding: 5px;
-  font-size: 16px;
-}
+/* Step 8 End */
 
 .bar-container {
   display: flex;

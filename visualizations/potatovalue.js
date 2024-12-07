@@ -239,12 +239,10 @@ function drawPotatoValueEfficiency(svg, dimensions) {
           return !isBrushed;
         });
 
-        // Update selectedStates based on brushed points
         selectedStates = new Set(
           brushedData.map((d) => d.state.trim().toLowerCase())
         );
 
-        // Update map highlighting
         svgMap
           .selectAll("path")
           .classed("selected", (d) => {
@@ -284,10 +282,8 @@ function drawPotatoValueEfficiency(svg, dimensions) {
           }
         });
 
-        // Highlight the map paths
         updateHighlighting();
 
-        // Hide scatterplot dots not in the selected states
         scatterplotG.selectAll(".dot").classed("hidden", function (d) {
           return !selectedStates.has(d.state.trim().toLowerCase());
         });
