@@ -25,6 +25,7 @@ const updateVisualization = (stepIndex) => {
       break;
     case 2: // Potato Type
       clear();
+      drawPotatoTypes(svg, dimensions);
       break;
     case 3: // PPA vs VPA
       removeTruckOrAll(svg, dimensions);
@@ -146,7 +147,7 @@ function potatoPopularityDataPreprocessor(row) {
   };
 }
 
-function PricePerYieldDataPreprocessor(row) {
+function pricePerYieldDataPreprocessor(row) {
   return {
     state: row["State"],
     area_planted_2021: row["AreaPlanted2021"],
@@ -185,5 +186,12 @@ function PricePerYieldDataPreprocessor(row) {
     price_cwt_2023: row["PriceCWT2023"],
     production_value_2023: row["ProductionValue2023"],
     sales_value_2023: row["SalesValue2023"],
+  };
+}
+
+function potatoTypesPreprocessor(row) {
+  return {
+    name: row["Variety"],
+    value: Number(row["AcresPlanted"])
   };
 }
