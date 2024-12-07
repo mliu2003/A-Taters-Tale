@@ -41,6 +41,7 @@ const updateVisualization = (stepIndex) => {
       break;
     case 7: // Potato Dishes
       svg.selectAll("*").remove();
+      drawOverview(svg, dimensions);
       break;
     case 8: // How to eat?
       svg.selectAll("*").remove();
