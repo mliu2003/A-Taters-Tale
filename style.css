@@ -4,6 +4,21 @@ body {
   padding: 0;
 }
 
+.overall {
+  display: flex;
+  flex-direction: row;
+}
+
+.progressbar {
+  width: 40px;
+  height: 100vh;
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -17,6 +32,7 @@ body {
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
+  background-color: chocolate;
 }
 
 .graphic {
@@ -36,12 +52,10 @@ body {
   margin: 0 0 100vh 0;
   padding: 50px;
   background: #f9f9f9;
-  border-left: 5px solid #ccc;
 }
 
 .step.active {
   background: #eef;
-  border-left-color: #0074d9;
 }
 
 .spuddy-img {

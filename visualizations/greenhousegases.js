@@ -4,16 +4,12 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
   const circleRadius = 40;
   const columns = 4;
   const maxSize = 230;
-  //   console.log(width);
-  //   console.log(height);
 
   d3.csv("data/greenhouse-gas-emissions-per-kilogram-of-food-product.csv").then(
     (rawData) => {
       const gasEmissions = rawData.map((row) =>
         greenhouseGasDataPreprocessor(row)
       );
-
-      // console.log(gasEmissions)
 
       var radiusScale = d3
         .scaleSqrt()
@@ -24,7 +20,6 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
 
       const positions = gasEmissions.map((d, i) => {
         const size = radiusScale(d.emissions_per_kg);
-        // console.log(size);
         var col = (i + cols_skipped) % columns;
         var row = Math.floor((i + cols_skipped) / columns);
         if (size > 150) {
@@ -51,7 +46,6 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
         .each(function (d, i) {
           // Center the image based on its scaled size
           const size = radiusScale(d.emissions_per_kg);
-          // console.log(size)
           d3.select(this)
             .attr("x", positions[i].x + 100 / 2 - size / 2)
             .attr("y", positions[i].y + 100 / 2 - size / 2);
