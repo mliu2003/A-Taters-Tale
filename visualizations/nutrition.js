@@ -147,7 +147,8 @@ function updateMacro(svg, dimensions, selected) {
     .call(d3.axisBottom(x))
     .selectAll(".tick text")
     .attr("class", "axis-label")
-    .style("text-anchor", "middle");
+    .style("text-anchor", "middle")
+    .style("font-weight", "bold");
 
   const yAxis = gGroup.selectAll(".y-axis")
     .data([null]);
