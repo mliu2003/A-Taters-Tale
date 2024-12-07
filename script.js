@@ -144,6 +144,7 @@ const updateVisualization = (stepIndex) => {
       break;
     case 10: // Nutrition Facts
       clear();
+      drawNutrition(svg, dimensions);
       break;
     case 11: // Goodbye
       clear();
