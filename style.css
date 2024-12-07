@@ -69,6 +69,10 @@ body {
   background: #eef;
 }
 
+.scrollGuide {
+    color: green
+}
+
 .spuddy-img {
   height: 200px;
   width: auto;
