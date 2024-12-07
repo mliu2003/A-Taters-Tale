@@ -96,7 +96,7 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .scaleSequential()
       .domain(d3.extent(dataset, (d) => d.yieldValue))
       .interpolator((d) => {
-        if (d === 1) return "#f0f0f0";
+        if (d === 1) return "#D3D3D3";
         return d3.interpolateRgb("#08306b", "#ffffff")(d);
       });
     const mapPaths = svgMap
