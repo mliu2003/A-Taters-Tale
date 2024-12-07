@@ -22,12 +22,14 @@ const updateVisualization = (stepIndex) => {
       break;
     case 2: // Potato Type
       svg.selectAll("*").remove();
+      d3.select(".radio-buttons").remove();
       break;
     case 3: // PPA vs VPA
       removeTruckOrAll(svg, dimensions);
       drawVegetablePrices(svg, dimensions);
       break;
     case 4: // Truck
+      d3.select(".radio-buttons").remove();
       drawTruck(svg, dimensions);
       break;
     case 5: // Production by State
@@ -145,7 +147,7 @@ function PricePerYieldDataPreprocessor(row) {
     seed_feed_2021: row["SeedFeed2021"],
     shrink_loss_2021: row["ShrinkLoss2021"],
     sold_2021: row["Sold2021"],
-    price_cwt_2022:row["PriceCWT2022"],
+    price_cwt_2022: row["PriceCWT2022"],
     production_value_2022: row["ProductionValue2022"],
     sales_value_2022: row["SalesValue2022"],
     production_cwt_2022: row["ProductionCWT2022"],
@@ -153,7 +155,7 @@ function PricePerYieldDataPreprocessor(row) {
     seed_feed_2022: row["SeedFeed2022"],
     shrink_loss_2021: row["ShrinkLoss2022"],
     sold_2022: row["Sold2022"],
-    price_cwt_2023:row["PriceCWT2023"],
+    price_cwt_2023: row["PriceCWT2023"],
     production_value_2023: row["ProductionValue2023"],
     sales_value_2023: row["SalesValue2023"],
     production_cwt_2023: row["ProductionCWT2023"],
@@ -161,8 +163,8 @@ function PricePerYieldDataPreprocessor(row) {
     seed_feed_2023: row["SeedFeed2023"],
     shrink_loss_2023: row["ShrinkLoss2023"],
     sold_2023: row["Sold2023"],
-    price_cwt_2023:row["PriceCWT2023"],
+    price_cwt_2023: row["PriceCWT2023"],
     production_value_2023: row["ProductionValue2023"],
-    sales_value_2023: row["SalesValue2023"]
+    sales_value_2023: row["SalesValue2023"],
   };
 }
