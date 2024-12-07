@@ -196,8 +196,15 @@ path.non-selected {
   opacity: 0.2;
 }
 
-#map-container,
-#scatterplot-container {
-  padding: 10px;
+#map-container {
+  /* background-color: aliceblue; */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+#map-container svg {
+  width: 100%;
+  height: 100%;
 }
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Step 3 End =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */

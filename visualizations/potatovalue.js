@@ -163,7 +163,15 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .append("svg")
       .attr("width", dimensions.width)
       .attr("height", dimensions.height)
-      .attr("id", "potato-value-scatterplot");
+      .attr("id", "potato-value-scatterplot")
+      .style("transform", "scale(0.5)")
+      .style("opacity", 0);
+
+    svgScatterplot
+      .transition()
+      .duration(1000)
+      .style("transform", "scale(1)")
+      .style("opacity", 1);
 
     const scatterplotG = svgScatterplot
       .append("g")
