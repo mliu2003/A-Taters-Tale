@@ -58,8 +58,7 @@ const updateSpuddy = (stepIndex) => {
       .append("img")
       .attr("class", "clickme")
       .attr("src", "images/clickme.png")
-      .attr("width", "20%")
-      .attr("height", "20%");
+      .attr("width", "200px")
   }
 
   const spuddyRow = spuddy.append("div").style("display", "flex");
@@ -68,14 +67,11 @@ const updateSpuddy = (stepIndex) => {
     .append("img")
     .attr("class", "spuddyclick")
     .attr("src", "images/spuddyclick.png")
-    .attr("width", "20%")
-    .attr("height", "20%");
+    .attr("width", "200px")
 
   const textBox = spuddyRow
     .append("div")
     .style("background-color", "white")
-    .style("width", "25vh")
-    .style("height", "20vh")
     .style("border", "1px solid black")
     .style("border-radius", "20px")
     .style("box-shadow", "0px 4px 6px rgba(0, 0, 0, 0.1)")
