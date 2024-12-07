@@ -29,16 +29,22 @@ const clear = () => {
   d3.select(".radio-buttons").remove();
 };
 
-const clearTitle = () => {
+const clearTitleOrAll = () => {
+  d3.select(".radio-buttons").remove();
+  const title = svg.select(".title");
   const { width, height } = dimensions;
   graphic.style("background-color", "khaki");
   d3.select(".radio-buttons").remove();
-  d3.selectAll(".title")
-    .transition()
-    .duration(1000)
-    .ease(d3.easeCubicInOut)
-    .attr("transform", `translate(0, ${-height})`)
-    .remove();
+  if (title.empty()) {
+    svg.selectAll("*").remove();
+  } else {
+    title
+      .transition()
+      .duration(1000)
+      .ease(d3.easeCubicInOut)
+      .attr("transform", `translate(0, ${-height})`)
+      .remove();
+  }
 };
 
 let clickedSpuddy = false;
@@ -58,7 +64,7 @@ const updateSpuddy = (stepIndex) => {
       .append("img")
       .attr("class", "clickme")
       .attr("src", "images/clickme.png")
-      .attr("width", "200px")
+      .attr("width", "200px");
   }
 
   const spuddyRow = spuddy.append("div").style("display", "flex");
@@ -67,7 +73,7 @@ const updateSpuddy = (stepIndex) => {
     .append("img")
     .attr("class", "spuddyclick")
     .attr("src", "images/spuddyclick.png")
-    .attr("width", "200px")
+    .attr("width", "200px");
 
   const textBox = spuddyRow
     .append("div")
@@ -101,7 +107,7 @@ const updateVisualization = (stepIndex) => {
       drawTitle();
       break;
     case 1: // Greenhouse Gases
-      clearTitle();
+      clearTitleOrAll();
       drawGreenhouseGasEmissions(svg, dimensions);
       break;
     case 2: // Potato Type
