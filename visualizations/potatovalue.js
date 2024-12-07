@@ -74,8 +74,8 @@ function drawPotatoValueEfficiency(svg, dimensions) {
     const svgMap = d3
       .select("#map-container")
       .append("svg")
-      .attr("width", dimensions.width)
-      .attr("height", dimensions.height)
+      .attr("width", dimensions.width * 1.3)
+      .attr("height", dimensions.height * 1.3)
       .attr("id", "potato-value-map");
     const mapwidth = +svgMap.attr("width");
     const mapheight = +svgMap.attr("height");
@@ -169,7 +169,7 @@ function drawPotatoValueEfficiency(svg, dimensions) {
 
     svgScatterplot
       .transition()
-      .duration(1000)
+      .duration(1500)
       .style("transform", "scale(1)")
       .style("opacity", 1);
 
