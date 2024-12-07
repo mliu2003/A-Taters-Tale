@@ -6,13 +6,10 @@ function drawPotatoTypes(svg, dimensions) {
   const offsetY = (height - chartHeight) / 2;
 
   d3.csv("data/potatotypes2023.csv").then((rawData) => {
+    const parsedData = rawData.map((row) => potatoTypesPreprocessor(row));
 
-    const parsedData = rawData.map((row) =>
-        potatoTypesPreprocessor(row)
-    );
-
-    console.log(parsedData)
-    console.log(d3.max(parsedData, (d) => d.value))
+    console.log(parsedData);
+    console.log(d3.max(parsedData, (d) => d.value));
 
     const yScale = d3
       .scaleLinear()
@@ -23,13 +20,11 @@ function drawPotatoTypes(svg, dimensions) {
       .scaleBand()
       .domain(parsedData.map((d) => d.name))
       .range([0, chartWidth]);
-    //   .padding(0.2);
 
     const extraPad = 40;
     svg
       .append("rect")
       .attr("fill", "none")
-      // .attr("opacity", 0.5)
       .attr("height", chartHeight + 2 * extraPad)
       .attr("width", chartWidth + 3 * extraPad)
       .attr(
@@ -52,6 +47,8 @@ function drawPotatoTypes(svg, dimensions) {
 
     chart.append("g").call(d3.axisLeft(yScale));
 
+    const imageAspectRatio = 629 / 1391;
+
     chart
       .selectAll(".bar")
       .data(parsedData)
@@ -60,11 +57,14 @@ function drawPotatoTypes(svg, dimensions) {
       .attr("class", "bar")
       .attr("x", (d) => xScale(d.name))
       .attr("y", (d) => yScale(d.value))
-      // .attr("width", xScale.bandwidth())
       .attr("width", chartWidth / 4)
       .attr("height", (d) => chartHeight - yScale(d.value))
-      .attr("href", "images/tallest-sprout.png");
-      // object-fit: fill doesn't seem to be working as expected. will look into more later
+      .attr("href", "images/tallest-sprout.png")
+      .attr("preserveAspectRatio", (d) => {
+        const height = chartHeight - yScale(d.value);
+        const calculatedHeight = chartWidth / 4 / imageAspectRatio;
+        return height > calculatedHeight ? "none" : "xMidYMid meet";
+      });
 
     chart
       .selectAll(".label")
@@ -77,19 +77,21 @@ function drawPotatoTypes(svg, dimensions) {
       .attr("font-size", "12px")
       .attr("fill", "black");
 
-      svg.append("image")
+    svg
+      .append("image")
       .attr("x", 0)
-      .attr("y", height/9)
+      .attr("y", height / 9)
       .attr("width", width * 1.2)
-      .attr("height", height ) 
-      .attr("href", "images/field.png") 
-      .lower()
+      .attr("height", height)
+      .attr("href", "images/field.png")
+      .lower();
 
-  svg.append("rect")
+    svg
+      .append("rect")
       .attr("width", "100%")
       .attr("height", "100%")
       .attr("fill", "lightblue")
-      .lower()
+      .lower();
 
     // svg
     //   .append("image")
