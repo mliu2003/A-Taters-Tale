@@ -105,3 +105,85 @@ label {
   font-size: 16px;
   cursor: pointer;
 }
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Step 3 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+.dot.hidden {
+  opacity: 0.1;
+}
+
+.d3-tip {
+  line-height: 1;
+  padding: 6px;
+  background: rgba(240, 240, 240, 0.95);
+  color: #333;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(240, 240, 240, 0.95);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.d3-tip.n:after {
+  margin: -2px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.d3-tip h5 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 2px 10px 4px 2px;
+}
+
+.d3-tip thead td {
+  border-bottom: 1px solid #ccc;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.d3-tip td {
+  padding: 2px 10px 2px 2px;
+}
+
+.d3-tip thead tr {
+  padding-top: 10px;
+}
+
+.axis-label {
+  font-size: 14px;
+  fill: #000;
+}
+
+.dot.selected {
+  opacity: 1;
+  stroke: black;
+  stroke-width: 2px;
+}
+
+.dot.non-selected {
+  opacity: 0.1;
+}
+
+path.selected {
+  stroke: black;
+  stroke-width: 2px;
+}
+
+path.non-selected {
+  opacity: 0.2;
+}
+
+#map-container,
+#scatterplot-container {
+  padding: 10px;
+}
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Step 3 End =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */

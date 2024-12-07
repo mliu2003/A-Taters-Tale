@@ -22,9 +22,9 @@ const updateVisualization = (stepIndex) => {
       break;
     case 2: // Potato Type
       svg.selectAll("*").remove();
-      d3.select(".radio-buttons").remove();
       break;
     case 3: // PPA vs VPA
+      svg.selectAll("*").remove();
       removeTruckOrAll(svg, dimensions);
       drawPotatoValueEfficiency(svg, dimensions);
       break;
