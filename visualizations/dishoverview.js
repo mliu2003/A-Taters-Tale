@@ -19,17 +19,17 @@ function drawOverview(svg, dimensions) {
   }
 
   const pastelColors = [
-    "#FAD0C4",
-    "#F8C8DC",
-    "#D5A6BD",
-    "#A8D0E6",
-    "#C4E1C1",
-    "#FFE156",
-    "#FF9A8B",
-    "#F4A300",
-    "#B0E0E6",
-    "#F0E5DE",
-    "#F2E6AC"
+    "#974b00",
+    "#b65a00",
+    "#cf6600",
+    "#e48121",
+    "#d87e24",
+    "#ff8c1a",
+    "#ffa64d",
+    "#ffbf80",
+    "#ffca95",
+    "#ffd8b1",
+    "#ffdfbf",
   ];
 
 
