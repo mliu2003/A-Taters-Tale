@@ -10,6 +10,7 @@ function drawOutro(svg, dimensions) {
     const targetValue = 131000;
 
     const fontSize = 40; 
+    const fontFamily = "Monaco"
 
     const chart = svg
     .append("g")
@@ -20,6 +21,7 @@ function drawOutro(svg, dimensions) {
         .attr('y', 0)
         .attr('text-anchor', 'middle')
         .attr('font-size', fontSize)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em') 
         .text('Potatoes Wrapped')
 
@@ -31,6 +33,7 @@ function drawOutro(svg, dimensions) {
         .attr('y', chartHeight/3)
         .attr('text-anchor', 'middle')
         .attr('font-size', fontSize)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em') 
         .text(0)
 
@@ -48,7 +51,8 @@ function drawOutro(svg, dimensions) {
         .attr('x', chartWidth/2)
         .attr('y', chartHeight/3 + fontSize)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 30)
+        .attr('font-size', 15)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em')
         .text("Total acres of potatoes planted")
 
@@ -59,6 +63,7 @@ function drawOutro(svg, dimensions) {
         .attr('y', 2 * chartHeight/3)
         .attr('text-anchor', 'middle')
         .attr('font-size', fontSize)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em') 
         .text('Russet')
 
@@ -66,7 +71,8 @@ function drawOutro(svg, dimensions) {
         .attr('x', 0)
         .attr('y', 2 * chartHeight/3 + fontSize)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 20)
+        .attr('font-size', 15)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em')
         .text("Most popular variety grown")
 
@@ -76,6 +82,7 @@ function drawOutro(svg, dimensions) {
         .attr('y', 2 * chartHeight/3)
         .attr('text-anchor', 'middle')
         .attr('font-size', fontSize)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em') 
         .text('Idaho')
 
@@ -83,7 +90,8 @@ function drawOutro(svg, dimensions) {
         .attr('x', chartWidth/2)
         .attr('y', 2 * chartHeight/3 + fontSize)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 20)
+        .attr('font-size', 15)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em')
         .text("Most potatoes planted")
 
@@ -92,6 +100,7 @@ function drawOutro(svg, dimensions) {
         .attr('y', 2 * chartHeight/3)
         .attr('text-anchor', 'middle')
         .attr('font-size', fontSize)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em') 
         .text('French Fries')
 
@@ -99,17 +108,19 @@ function drawOutro(svg, dimensions) {
         .attr('x', chartWidth)
         .attr('y', 2 * chartHeight/3 + fontSize)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 20)
+        .attr('font-size', 15)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em')
         .text("Most popular potato dish")
 
     thirdRow = chart.append("g")
 
     const calories = thirdRow.append('text')
-        .attr('x', chartWidth/3)
+        .attr('x', chartWidth/4)
         .attr('y', chartHeight - fontSize)
         .attr('text-anchor', 'middle')
         .attr('font-size', fontSize)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em') 
         .text(0)
 
@@ -124,10 +135,11 @@ function drawOutro(svg, dimensions) {
         });
 
     thirdRow.append("text")
-        .attr('x', chartWidth/3)
+        .attr('x', chartWidth/4)
         .attr('y', chartHeight)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 20)
+        .attr('font-size', 15)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em')
         .text("Calories in a potato")
 
@@ -136,6 +148,7 @@ function drawOutro(svg, dimensions) {
         .attr('y', chartHeight - fontSize)
         .attr('text-anchor', 'middle')
         .attr('font-size', fontSize)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em') 
         .text(0)
 
@@ -153,7 +166,8 @@ function drawOutro(svg, dimensions) {
         .attr('x',  2.5 * chartWidth/3)
         .attr('y', chartHeight)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 20)
+        .attr('font-size', 15)
+        .attr('font-family', fontFamily)
         .attr('dy', '.3em')
         .text("Pounds of potatoes for $100")
 
