@@ -1,12 +1,10 @@
 function drawPotatoDishChoices(svg, dimensions) {
   d3.json("data/potatodishes.json").then((products) => {
-    // const potatoPopularityData = rawData.map((row) =>
-    //   potatoPopularityDataPreprocessor(row)
-    // );
     const { width, height } = dimensions;
 
     svg.selectAll("*").remove();
 
+    // Define arrow marker with adjusted orientation
     svg
       .append("defs")
       .append("marker")
@@ -16,7 +14,7 @@ function drawPotatoDishChoices(svg, dimensions) {
       .attr("refY", 5)
       .attr("markerWidth", 6)
       .attr("markerHeight", 6)
-      .attr("orient", "auto-start-reverse")
+      .attr("orient", "auto")
       .append("path")
       .attr("d", "M 0 0 L 10 5 L 0 10 z")
       .attr("fill", "black");
@@ -33,58 +31,118 @@ function drawPotatoDishChoices(svg, dimensions) {
 
     const radius = 400;
 
-    svg
+    // Add central image with entrance transition
+    const centralImage = svg
       .append("image")
       .attr("href", "images/start-potato-viz3.png")
       .attr("x", centralImageX)
-      .attr("y", centralImageY)
+      .attr("y", centralImageY + 100)
       .attr("width", centralImageWidth)
-      .attr("height", centralImageHeight);
+      .attr("height", centralImageHeight)
+      .style("opacity", 0);
+
+    centralImage
+      .transition()
+      .duration(800)
+      .attr("y", centralImageY)
+      .style("opacity", 1);
 
     const productImageWidth = 150;
     const productImageHeight = 150;
 
-    products.forEach((product) => {
+    function getArrowEndPoint(angle, imageX, imageY, imageWidth, imageHeight) {
+      // Calculate the bottom center of the image
+      const imageCenterX = imageX + imageWidth / 2;
+      const imageBottom = imageY + imageHeight;
+
+      // Set the arrow to end 20 pixels below the image
+      return {
+        x: imageCenterX,
+        y: imageBottom + 20,
+      };
+    }
+
+    // Create a container for each product's elements
+    const productGroups = products.map((product, index) => {
       const angleRad = (product.angle * Math.PI) / 180;
       const endX = lineStartX + radius * Math.cos(angleRad);
       const endY = lineStartY + radius * Math.sin(angleRad);
 
-      const imageBottomY = endY + 20 + productImageHeight / 2;
+      // Calculate image position
+      const imageX = endX - productImageWidth / 2;
+      const imageY = endY - productImageHeight / 2;
 
-      const controlPointX = (lineStartX + endX) / 2;
+      // Calculate arrow endpoint
+      const arrowEnd = getArrowEndPoint(
+        product.angle,
+        imageX,
+        imageY,
+        productImageWidth,
+        productImageHeight
+      );
+
+      // Custom control points for smoother curves
+      const controlPointX = (lineStartX + arrowEnd.x) / 2;
       const controlPointY = lineStartY - 150;
 
-      svg
-        .append("path")
-        .attr(
-          "d",
-          `M${lineStartX},${lineStartY} Q${controlPointX},${controlPointY} ${endX},${imageBottomY}`
-        )
-        .attr("stroke", "black")
-        .attr("stroke-width", 4)
-        .attr("fill", "none")
-        .attr("marker-end", "url(#arrowhead)");
-
-      svg
+      // Add product image
+      const productImage = svg
         .append("image")
         .attr("href", product.img)
-        .attr("x", endX - productImageWidth / 2)
-        .attr("y", endY - productImageHeight / 2)
+        .attr("x", imageX)
+        .attr("y", imageY)
         .attr("width", productImageWidth)
         .attr("height", productImageHeight)
         .style("cursor", "pointer")
+        .style("opacity", 0)
         .on("click", function () {
           showPopup(product);
         });
 
-      svg
+      // Add product name
+      const productText = svg
         .append("text")
         .attr("x", endX)
-        .attr("y", endY - productImageHeight / 2 - 10)
+        .attr("y", imageY - 10)
         .attr("text-anchor", "middle")
         .attr("font-size", "20px")
         .text(product.name)
-        .attr("font-weight", "bold");
+        .attr("font-weight", "bold")
+        .style("opacity", 0);
+
+      // Add the path (arrow)
+      const path = svg
+        .append("path")
+        .attr(
+          "d",
+          `M${lineStartX},${lineStartY} Q${controlPointX},${controlPointY} ${arrowEnd.x},${arrowEnd.y}`
+        )
+        .attr("stroke", "black")
+        .attr("stroke-width", 4)
+        .attr("fill", "none")
+        .attr("marker-end", "url(#arrowhead)")
+        .style("opacity", 0);
+
+      return { productImage, productText, path, index };
+    });
+
+    // Apply transitions to all elements
+    productGroups.forEach(({ productImage, productText, path, index }) => {
+      const delay = 800 + index * 300;
+
+      productImage.transition().delay(delay).duration(600).style("opacity", 1);
+
+      productText
+        .transition()
+        .delay(delay + 200)
+        .duration(600)
+        .style("opacity", 1);
+
+      path
+        .transition()
+        .delay(delay + 400)
+        .duration(600)
+        .style("opacity", 1);
     });
 
     function showPopup(product) {
