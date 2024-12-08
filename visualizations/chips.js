@@ -71,17 +71,31 @@ function drawChips(svg, dimensions) {
     .style("opacity", 1); // Fade in the image
 
   g.selectAll("#brand-label")
+    .data(Object.entries(chips_data))
     .transition()
     .duration(1000)
     .delay((d, i) => i * 100)
     .ease(d3.easeBounceOut)
-    .attr("y", offsetY + chipHeight + 115) // Position text just below the image
+    .attr("y", function(d, i) {
+      var brand = d[0];
+      var value = d[1][0];
+      const scaledWidth = chipWidth * (value / maxValue) * scaleFactor;
+      const scaledHeight = chipHeight * (value / maxValue) * scaleFactor;
+      return height / 4 + (maxHeight - scaledHeight) + scaledHeight + 15;
+    }) 
     .style("opacity", 1); // Fade in the text
   g.selectAll("#value-label")
+    .data(Object.entries(chips_data))
     .transition()
     .delay((d, i) => i * 100)
     .duration(1000)
     .ease(d3.easeBounceOut)
-    .attr("y", offsetY + chipHeight + 130) // Position text just below the image
+    .attr("y", function(d, i) {
+      var brand = d[0];
+      var value = d[1][0];
+      const scaledWidth = chipWidth * (value / maxValue) * scaleFactor;
+      const scaledHeight = chipHeight * (value / maxValue) * scaleFactor;
+      return height / 4 + (maxHeight - scaledHeight) + scaledHeight + 30;
+    })
     .style("opacity", 1); // Fade in the text
 }

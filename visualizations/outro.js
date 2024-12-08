@@ -52,6 +52,14 @@ function drawOutro(svg, dimensions) {
         .attr('dy', '.3em')
         .text("Total acres of potatoes planted")
 
+    firstRow
+        .append("image")
+        .attr("href", "images/potato.png")
+        .attr('x', chartWidth/2 - 250)
+        .attr('y', chartHeight/3 - 125)
+        .attr("width", 500)
+        .attr("height", 250) 
+
     const secondRow = chart.append("g")
 
     const russet = secondRow.append('text')
