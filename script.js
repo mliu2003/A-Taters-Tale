@@ -108,6 +108,7 @@ const updateVisualization = (stepIndex) => {
       break;
     case 1: // Greenhouse Gases
       clearTitleOrAll();
+      clear();
       drawGreenhouseGasEmissions(svg, dimensions);
       break;
     case 2: // Potato Type

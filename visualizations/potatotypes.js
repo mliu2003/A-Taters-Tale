@@ -5,6 +5,7 @@ function drawPotatoTypes(svg, dimensions) {
   const offsetX = (width - chartWidth) / 2;
   const offsetY = (height - chartHeight) / 2;
 
+
   d3.csv("data/potatotypes2023.csv").then((rawData) => {
     const parsedData = rawData.map((row) => potatoTypesPreprocessor(row));
 
@@ -77,6 +78,33 @@ function drawPotatoTypes(svg, dimensions) {
       .attr("font-size", "12px")
       .attr("fill", "black");
 
+    chart.append("text")
+      .attr("x", chartWidth / 2) 
+      .attr("y", chartHeight + 40) 
+      .attr("text-anchor", "middle")
+      .attr("font-size", "14px")
+      .attr("fill", "black")
+      .text("Potato Variety");
+
+ 
+    chart.append("text")
+      .attr("x", -chartHeight / 2) 
+      .attr("y", -50) 
+      .attr("transform", "rotate(-90)") 
+      .attr("text-anchor", "middle")
+      .attr("font-size", "14px")
+      .attr("fill", "black")
+      .text("Acres Planted");
+
+    svg.append("text")
+      .attr("x", width / 2) 
+      .attr("y", offsetY / 2) 
+      .attr("text-anchor", "middle") 
+      .attr("font-size", "20px")
+      .attr("font-weight", "bold")
+      .attr("fill", "black")
+      .text("Acres Planted by Variety"); 
+
     svg
       .append("image")
       .attr("x", 0)
@@ -86,20 +114,14 @@ function drawPotatoTypes(svg, dimensions) {
       .attr("href", "images/field.png")
       .lower();
 
-    svg
-      .append("rect")
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .attr("fill", "lightblue")
-      .lower();
+      svg.append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", "black")
+            .lower()
+            .transition()
+            .duration(2000)
+            .attr("fill", "lightblue");
 
-    // svg
-    //   .append("image")
-    //   .attr("x", 0)
-    //   .attr("y", 0)
-    //   .attr("width", width)
-    //   .attr("height", height)
-    //   .attr("href", "images/farm-sky-background.jpg")
-    //   .lower();
   });
 }
