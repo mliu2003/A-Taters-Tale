@@ -78,15 +78,20 @@ function drawPotatoValueEfficiency(svg, dimensions) {
     const svgMap = d3
       .select("#map-container")
       .append("svg")
-      .attr("width", dimensions.width * 1.3)
-      .attr("height", dimensions.height * 1.3)
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .attr("viewBox", `0 0 1000 500`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
       .attr("id", "potato-value-map");
-    const mapwidth = +svgMap.attr("width");
-    const mapheight = +svgMap.attr("height");
+    const mapBounds = svgMap.node().getBoundingClientRect();
+    console.log("Map bounds:", mapBounds);
+    console.log("Map width:", mapBounds.width);
+    console.log("Map height:", mapBounds.height);
+    const mapwidth = mapBounds.width;
+    const mapheight = mapBounds.height;
     const projection = d3
       .geoNaturalEarth1()
-      .scale(mapwidth / 1.3 / Math.PI)
-      .translate([mapwidth / 2, mapheight / 2]);
+      .fitSize([mapwidth * 2.3, mapheight * 2.3], geoData);
 
     const pathGenerator = d3.geoPath().projection(projection);
     var states = [...new Set(dataset.map((d) => d.state))];
@@ -97,7 +102,10 @@ function drawPotatoValueEfficiency(svg, dimensions) {
         if (d === 1) return "#D3D3D3";
         return d3.interpolateRgb("#08306b", "#ffffff")(d);
       });
-    const mapPaths = svgMap
+    const mapGroup = svgMap
+      .append("g")
+      .attr("transform", `translate(${mapwidth * 0.05}, ${mapheight * 0.1})`);
+    const mapPaths = mapGroup
       .append("g")
       .selectAll("path")
       .data(geoData.features)
@@ -147,7 +155,7 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .brush()
       .extent([
         [0, 0],
-        [mapwidth, mapheight],
+        [mapwidth * 2.5, mapheight * 2.5],
       ])
       .on("brush", mapBrushmove)
       .on("end", mapBrushend);
