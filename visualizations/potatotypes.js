@@ -10,9 +10,6 @@ function drawPotatoTypes(svg, dimensions) {
   d3.csv("data/potatotypes2023.csv").then((rawData) => {
     const parsedData = rawData.map((row) => potatoTypesPreprocessor(row));
 
-    console.log(parsedData);
-    console.log(d3.max(parsedData, (d) => d.value));
-
     const yScale = d3
       .scaleLinear()
       .domain([0, d3.max(parsedData, (d) => d.value)])

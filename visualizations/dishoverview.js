@@ -3,7 +3,6 @@ function drawOverview(svg, dimensions) {
 
   const radius = Math.min(width, height) / 3;
 
-  // const test_data = [16, 15, 12, 11, 8, 8, 8, 7, 6, 5, 4];
   const data = {
     // value, name_rot_offset, name_inner_radius_offset, name_outer_radius_offset, value_rot_offset, value_inner_radius_offset, value_outer_radius_offset
     "French Fries": [16, 150, -10, 10, 100, 115, -250],
