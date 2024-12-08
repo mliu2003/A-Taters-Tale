@@ -20,7 +20,6 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
         var toolTip = d3
         .tip()
         .attr("class", "d3-tip")
-        // .offset([-12, -10])
         .html(function (event, d) {
           return `<div>
           <h5>${d.name}</h5>
@@ -38,7 +37,6 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
         
         const positions = gasEmissions.map((d, i) => {
             const size = radiusScale(d.emissions_per_kg);
-            console.log(size)
             var col = (i + cols_skipped) % columns; 
             var row = Math.floor((i + cols_skipped) / columns);
             if (size > 170) {

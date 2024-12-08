@@ -4,7 +4,6 @@ function drawPotatoDishChoices(svg, dimensions) {
 
     svg.selectAll("*").remove();
 
-    // Define arrow marker with adjusted orientation
     svg
       .append("defs")
       .append("marker")
@@ -31,7 +30,6 @@ function drawPotatoDishChoices(svg, dimensions) {
 
     const radius = 400;
 
-    // Add central image with entrance transition
     const centralImage = svg
       .append("image")
       .attr("href", "images/start-potato-viz3.png")
@@ -51,28 +49,23 @@ function drawPotatoDishChoices(svg, dimensions) {
     const productImageHeight = 150;
 
     function getArrowEndPoint(angle, imageX, imageY, imageWidth, imageHeight) {
-      // Calculate the bottom center of the image
       const imageCenterX = imageX + imageWidth / 2;
       const imageBottom = imageY + imageHeight;
 
-      // Set the arrow to end 20 pixels below the image
       return {
         x: imageCenterX,
         y: imageBottom + 20,
       };
     }
 
-    // Create a container for each product's elements
     const productGroups = products.map((product, index) => {
       const angleRad = (product.angle * Math.PI) / 180;
       const endX = lineStartX + radius * Math.cos(angleRad);
       const endY = lineStartY + radius * Math.sin(angleRad);
 
-      // Calculate image position
       const imageX = endX - productImageWidth / 2;
       const imageY = endY - productImageHeight / 2;
 
-      // Calculate arrow endpoint
       const arrowEnd = getArrowEndPoint(
         product.angle,
         imageX,
@@ -81,11 +74,9 @@ function drawPotatoDishChoices(svg, dimensions) {
         productImageHeight
       );
 
-      // Custom control points for smoother curves
       const controlPointX = (lineStartX + arrowEnd.x) / 2;
       const controlPointY = lineStartY - 150;
 
-      // Add product image
       const productImage = svg
         .append("image")
         .attr("href", product.img)
@@ -99,7 +90,6 @@ function drawPotatoDishChoices(svg, dimensions) {
           showPopup(product);
         });
 
-      // Add product name
       const productText = svg
         .append("text")
         .attr("x", endX)
@@ -110,7 +100,6 @@ function drawPotatoDishChoices(svg, dimensions) {
         .attr("font-weight", "bold")
         .style("opacity", 0);
 
-      // Add the path (arrow)
       const path = svg
         .append("path")
         .attr(
@@ -126,7 +115,6 @@ function drawPotatoDishChoices(svg, dimensions) {
       return { productImage, productText, path, index };
     });
 
-    // Apply transitions to all elements
     productGroups.forEach(({ productImage, productText, path, index }) => {
       const delay = 800 + index * 300;
 

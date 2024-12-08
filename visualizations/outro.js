@@ -1,7 +1,5 @@
 function drawOutro(svg, dimensions) {
     const { width, height } = dimensions;
-    console.log(width)
-    console.log(height)
     const chartWidth = 600;
     const chartHeight = 500;
     const offsetX = (width - chartWidth) / 2;
@@ -25,7 +23,6 @@ function drawOutro(svg, dimensions) {
 
     const firstRow = chart.append("g")
 
-// Append a text element to the SVG
     const acreCount = firstRow.append('text')
         .attr('x', chartWidth/2)
         .attr('y', chartHeight/3)

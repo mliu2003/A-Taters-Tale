@@ -126,8 +126,6 @@ function generateFact(svg, cx, cy, text, scaledHeight, scaledWidth) {
       d3.selectAll(".text-box").style("visibility", "hidden");
       textBox.style("visibility", "visible");
     }
-
-    console.log("Circle clicked!");
   });
 }
 
