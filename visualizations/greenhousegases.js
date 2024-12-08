@@ -107,7 +107,12 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
                 .attr("r", circleRadius)
                 .attr("fill", "none")
                 .attr("stroke", "red")
-                .attr("stroke-width", 3);
+                .attr("stroke-width", 3)
+                .attr("opacity", 0)
+                .transition()
+                .delay(200)
+                .duration(2000)
+                .style("opacity", 1)
         }
 
         svg.append("image")
@@ -117,11 +122,6 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
             .attr("height", height ) 
             .attr("href", "images/half-earth.png") 
             .lower()
-            .transition()
-            .duration(1500)
-            .style("transform", "scale(1)")
-            .style("opacity", 1);
-            
 
         svg.append("rect")
             .attr("width", "100%")
@@ -132,14 +132,6 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
             .duration(2000)
             .attr("fill", "black");
             
-   
-            
-            // .remove();
-       
-
-    
-        
-  
 
     })
 }

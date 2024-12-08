@@ -6,7 +6,7 @@ const height = svg.node().clientHeight;
 
 const spuddyText = [
   "Hi there! My name is Spuddy! I'll be your personal potato buddy today! Try scrolling to see some visualizations, and be sure to click on me for more info!",
-  "Hover over teach vegetable name to see the how many kilograms of greenhouse gases (GHG) are produced per kilogram of crop produced.",
+  "Hover over each vegetable name to see the how many kilograms of greenhouse gases (GHG) are produced per kilogram of crop produced.",
   "The total amount of acres of potatoes planted is about 131,000.",
   "slide 3",
   "slide 4",
