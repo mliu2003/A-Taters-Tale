@@ -56,8 +56,6 @@ function drawPotatoValueEfficiency(svg, dimensions) {
     d3.json("data/us-states.json"),
     d3.csv("data/potatovalueefficiency.csv", potatoValueDataPreprocessor),
   ]).then(function ([geoData, dataset]) {
-    console.log(geoData);
-    console.log(dataset);
     var toolTip = d3
       .tip()
       .attr("class", "d3-tip")
@@ -175,7 +173,7 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .call(toolTip);
     svgScatterplot
       .transition()
-      .duration(1500)
+      .duration(1000)
       .style("transform", "scale(1)")
       .style("opacity", 1);
 

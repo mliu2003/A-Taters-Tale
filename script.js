@@ -10,7 +10,7 @@ const spuddyText = [
   "slide 2",
   "slide 3",
   "slide 4",
-  "slide 5",
+  "Did you know? Idaho is better than your bum state",
   "slide 6",
   "slide 7",
   "slide 8",
@@ -126,6 +126,8 @@ const updateVisualization = (stepIndex) => {
       break;
     case 5: // Production by State
       removeTruckOrAll(svg, dimensions);
+      clear();
+      drawPotatoProduction(svg, dimensions);
       break;
     case 6: // Price by Crop
       clear();
@@ -249,6 +251,24 @@ function potatoPopularityDataPreprocessor(row) {
   return {
     dish: row["Dish"],
     popularity: +row["Popularity"],
+  };
+}
+
+/**
+ * Preprocesses raw data on potato production (by state)
+ *
+ * {
+ *   state: string,       // The name of the state (ruh roh)
+ *   production: number  // Total production of potatoes (1000 cwt)
+ * }
+ *
+ * @param {object} row - A single row of data from the CSV file.
+ * @returns {object} - A processed data object with the structure described above.
+ */
+function potatoProductionDataPreprocessor(row) {
+  return {
+    state: row["State"],
+    production: +row["Production"],
   };
 }
 
