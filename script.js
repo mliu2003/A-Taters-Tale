@@ -254,6 +254,24 @@ function potatoPopularityDataPreprocessor(row) {
 }
 
 /**
+ * Preprocesses raw data on potato production (by state)
+ *
+ * {
+ *   state: string,       // The name of the state (ruh roh)
+ *   production: number  // Total production of potatoes (1000 cwt)
+ * }
+ *
+ * @param {object} row - A single row of data from the CSV file.
+ * @returns {object} - A processed data object with the structure described above.
+ */
+function potatoProductionDataPreprocessor(row) {
+  return {
+    state: row["State"],
+    production: +row["Production"],
+  };
+}
+
+/**
  * Preprocesses raw potato data on yield, price, area, and seeding
  *
  * {
