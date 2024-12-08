@@ -13,7 +13,7 @@ const spuddyText = [
   "Did you know? Idaho is better than your bum state",
   "slide 6",
   "slide 7",
-  "slide 8",
+  'Spuddy: "Click on the images to learn more about each dish! My favorite are french fries!"',
   "slide 9",
   "slide 10",
   "Thanks for watching! Spuddy out.",

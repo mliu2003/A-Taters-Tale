@@ -30,7 +30,7 @@ function drawPotatoProduction(svg, dimensions) {
     const colorScale = d3
       .scaleSequential()
       .domain([0, d3.max(Array.from(productionData.values()))])
-      .interpolator(d3.interpolateRgb("#4a90e2", "#08306b"));
+      .interpolator(d3.interpolateRgb("#88b2e3", "#08306b"));
 
     const projection = d3
       .geoAlbersUsa()
