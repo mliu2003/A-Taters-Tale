@@ -10,7 +10,7 @@ const spuddyText = [
   "slide 2",
   "slide 3",
   "slide 4",
-  "slide 5",
+  "Did you know? Idaho is better than your bum state",
   "slide 6",
   "slide 7",
   "slide 8",

@@ -1,4 +1,20 @@
 function drawPotatoProduction(svg, dimensions) {
+  svg.style("opacity", 0).transition().duration(800).style("opacity", 1);
+
+  const statesGroup = svg
+    .append("g")
+    .attr("class", "states")
+    .style("opacity", 0);
+
+  const legendGroup = svg
+    .append("g")
+    .attr("class", "legend")
+    .attr(
+      "transform",
+      `translate(${dimensions.width - 330}, ${dimensions.height - 50})`
+    )
+    .style("opacity", 0);
+
   Promise.all([
     d3.csv("data/potatoproduction.csv"),
     d3.json("data/us-states-full.json"),
@@ -31,7 +47,8 @@ function drawPotatoProduction(svg, dimensions) {
       .style("background-color", "white")
       .style("border", "1px solid #ddd")
       .style("padding", "10px")
-      .style("border-radius", "3px");
+      .style("border-radius", "3px")
+      .style("pointer-events", "none");
 
     const positionTooltip = (event) => {
       const tooltipNode = tooltip.node();
@@ -50,17 +67,13 @@ function drawPotatoProduction(svg, dimensions) {
         top = event.pageY - tooltipRect.height - 10;
       }
 
-      if (left < 0) {
-        left = 10;
-      }
-
-      if (top < 0) {
-        top = 10;
-      }
+      if (left < 0) left = 10;
+      if (top < 0) top = 10;
 
       return { left, top };
     };
-    const states = svg
+
+    statesGroup
       .selectAll("path")
       .data(geoJson.features)
       .join("path")
@@ -68,19 +81,18 @@ function drawPotatoProduction(svg, dimensions) {
       .attr("fill", "#f0f0f0")
       .attr("stroke", "#fff")
       .attr("stroke-width", 0.5)
-      .style("opacity", 0)
       .on("mouseover", (event, d) => {
         const stateName = d.properties.NAME;
         const production = productionData.get(stateName.toUpperCase());
 
         tooltip.style("visibility", "visible").html(`
-          <strong>${stateName}</strong><br/>
-          ${
-            production
-              ? `Production: ${d3.format(",")(production)} thousand cwt`
-              : "No production data available"
-          }
-        `);
+            <strong>${stateName}</strong><br/>
+            ${
+              production
+                ? `Production: ${d3.format(",")(production)} thousand cwt`
+                : "No production data available"
+            }
+          `);
 
         const { left, top } = positionTooltip(event);
         tooltip.style("left", left + "px").style("top", top + "px");
@@ -95,7 +107,6 @@ function drawPotatoProduction(svg, dimensions) {
 
     const legendWidth = 300;
     const legendHeight = 20;
-    const legendMargin = { top: 10, right: 30, bottom: 30, left: 30 };
 
     const legendScale = d3
       .scaleLinear()
@@ -106,16 +117,6 @@ function drawPotatoProduction(svg, dimensions) {
       .axisBottom(legendScale)
       .tickFormat(d3.format(",.0f"))
       .ticks(5);
-
-    const legend = svg
-      .append("g")
-      .attr(
-        "transform",
-        `translate(${dimensions.width - legendWidth - legendMargin.right}, ${
-          dimensions.height - 50
-        })`
-      )
-      .style("opacity", 0);
 
     const defs = svg.append("defs");
 
@@ -136,13 +137,13 @@ function drawPotatoProduction(svg, dimensions) {
         .attr("stop-color", colorScale(value * colorScale.domain()[1]));
     }
 
-    legend
+    legendGroup
       .append("rect")
       .attr("width", legendWidth)
       .attr("height", legendHeight)
       .style("fill", "url(#legend-gradient)");
 
-    legend
+    legendGroup
       .append("g")
       .attr("transform", `translate(0, ${legendHeight})`)
       .call(legendAxis)
@@ -150,29 +151,26 @@ function drawPotatoProduction(svg, dimensions) {
       .style("font-size", "12px")
       .attr("dy", "0.8em");
 
-    legend
+    legendGroup
       .append("text")
       .attr("x", 0)
       .attr("y", -5)
       .text("Potato Production (thousand cwt)")
       .style("font-size", "12px");
 
-    svg
+    statesGroup
       .transition()
       .duration(500)
       .style("opacity", 1)
-      .on("end", () => {
-        states
-          .transition()
-          .duration(500)
-          .style("opacity", 1)
-          .attr("fill", (d) => {
-            const stateName = d.properties.NAME.toUpperCase();
-            const production = productionData.get(stateName);
-            return production ? colorScale(production) : "#f0f0f0";
-          });
-
-        legend.transition().duration(500).style("opacity", 1);
+      .transition()
+      .duration(500)
+      .selectAll("path")
+      .attr("fill", (d) => {
+        const stateName = d.properties.NAME.toUpperCase();
+        const production = productionData.get(stateName);
+        return production ? colorScale(production) : "#f0f0f0";
       });
+
+    legendGroup.transition().duration(500).style("opacity", 1);
   });
 }
