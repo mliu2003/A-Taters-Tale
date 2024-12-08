@@ -9,7 +9,7 @@ const spuddyText = [
   "Hover over each vegetable name to see the how many kilograms of greenhouse gases (GHG) are produced per kilogram of crop produced.",
   "The total amount of land used to plant potatoes in the United States in 2023 is about 131,000 acres.",
   "You're able to click and drag both the map above me and the scatter plot to see which points align with which state on the map. You can also hover over each point in the scatterplot to see the planting cost and yield value.",
-  "slide 4",
+  "We potatoes love riding trucks! It's like a road trip! Click on the different sections of the truck to learn some fun facts about potato transportation as well as the Big Idaho Potato Truck!",
   "Did you know? Idaho is better than your bum state (at least in terms of potato production). Hover over each state to find out the exact amount of potatoes produced in each state.",
   "Toggle the radio buttons at the top to see how many pounds of each vegetable you're able to buy for the given amount!",
   "Looks like a pie chart of a well blaanced meal to me!",
@@ -27,6 +27,7 @@ const dimensions = {
 const clear = () => {
   svg.selectAll("*").remove();
   d3.select(".radio-buttons").remove();
+  d3.selectAll(".overlay").remove();
 };
 
 const clearTitleOrAll = () => {

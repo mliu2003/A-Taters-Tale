@@ -38,7 +38,7 @@ function drawTruck(svg, dimensions) {
     newSvg,
     (scaledWidth * 1) / 4,
     scaledHeight / 2,
-    "TEST TEXT",
+    "Most potatoes are transported in 40-foot enclosed vans. These potatoes are often grouped together into 2,000-3,000 pound crates or totes.",
     scaledHeight,
     scaledWidth
   );
@@ -47,7 +47,7 @@ function drawTruck(svg, dimensions) {
     newSvg,
     (scaledWidth * 1) / 2,
     scaledHeight / 2,
-    "TEST TEXTTEST TEXTTEST TEXTTEST TEXTTEST TEXTTEST TEXTTEST TEXTTEST TEXTTEST TEXTTEST TEXTTEST TEXTTEST TEXTs",
+    "The Big Idaho Potato Truck has been running since 2012 to celebrate the 75th Anniversary of the Idaho Potato Commission! Now, it continues to travel the country every year!",
     scaledHeight,
     scaledWidth
   );
@@ -56,7 +56,7 @@ function drawTruck(svg, dimensions) {
     newSvg,
     (scaledWidth * 3) / 4,
     scaledHeight / 2,
-    "TEST TEXT",
+    "The Big Idaho Potato Truck carries a potato that is 4 tons in weight! You would need about 21562 average sized potatoes to achieve the same weight!",
     scaledHeight,
     scaledWidth
   );
@@ -95,6 +95,8 @@ function generateFact(svg, cx, cy, text, scaledHeight, scaledWidth) {
 
   const textBoxRect = textBox.append("rect");
 
+  const textWidth = scaledWidth / 4;
+
   const textBoxText = textBox
     .append("text")
     .style("font-size", "14px")
@@ -102,14 +104,15 @@ function generateFact(svg, cx, cy, text, scaledHeight, scaledWidth) {
     .text(text)
     .attr("x", cx)
     .attr("y", cy - boxHeight)
-    .attr("z-index", 1);
+    .attr("z-index", 1)
+    .call(wrapText, textWidth);
 
-  const textWidth = textBoxText.node().getComputedTextLength();
+  const textHeight = textBoxText.node().getBoundingClientRect().height + 20;
 
   const rectWidth = textWidth + 20;
   textBoxRect
     .attr("width", textWidth + 20)
-    .attr("height", 50)
+    .attr("height", textHeight)
     .style("fill", "white")
     .style("stroke", "black")
     .style("stroke-width", 1)
@@ -125,6 +128,35 @@ function generateFact(svg, cx, cy, text, scaledHeight, scaledWidth) {
     }
 
     console.log("Circle clicked!");
+  });
+}
+
+function wrapText(text, width) {
+  text.each(function () {
+    const textEl = d3.select(this);
+    const words = textEl.text().split(/\s+/).reverse();
+    let word;
+    let line = [];
+    let lineNumber = 0;
+    const lineHeight = 1.1;
+    const x = textEl.attr("x");
+    const y = textEl.attr("y");
+    let tspan = textEl.text(null).append("tspan").attr("x", x).attr("y", y);
+    while ((word = words.pop())) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = textEl
+          .append("tspan")
+          .attr("x", x)
+          .attr("y", y)
+          .attr("dy", `${++lineNumber * lineHeight}em`)
+          .text(word);
+      }
+    }
   });
 }
 
