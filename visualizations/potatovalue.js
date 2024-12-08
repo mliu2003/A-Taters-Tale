@@ -103,8 +103,8 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .scaleSequential()
       .domain(d3.extent(dataset, (d) => d.yieldValue))
       .interpolator((d) => {
-        if (d === 1) return "#A9A9A9";
-        return d3.interpolateRgb("#08306b", "#ffffff")(d);
+        if (d === 13) return "#A9A9A9";
+        return d3.interpolateRgb("#ADD8E6", "#08306b")(d);
       });
     const mapGroup = svgMap
       .append("g")
@@ -215,7 +215,7 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .attr("x", -height / 2)
       .attr("y", -50)
       .style("text-anchor", "middle")
-      .text("Value per Acre");
+      .text("Value by Sales");
 
     scatterplotG.append("g").attr("class", "brush").call(brush);
 
