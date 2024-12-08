@@ -6,9 +6,7 @@ A Tater’s Tale aims to provide a visualization for the beautiful life of a pot
 # How to use
 python3 -m http.server 8080
 
-# Datasets
-- **greenhouse-gase-emissions-per-kilogram-of-food-product.csv** - Greenhouse gas emissions per kilogram produced for various food products (potatoes, beef, cheese, rice, etc)
+# Resources
+- Greenhouse gases data: Poore, J., & Nemecek, T. (2018). Reducing food’s environmental impacts through producers and consumers. Science.
 
-- **vegetable-prices-2022.csv** - Prices of various vegetables in different forms (fresh, canned frozen) per pound. Also includes cup equivalences
-
-- **land-use-per-kg.csv** - Land use of different food products per kilogram produced
+- Potato variety data: USDA, Economic Research Service based on data from USDA, National Agricultural Statistics Service, Potato Summary (2023).
