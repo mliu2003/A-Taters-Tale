@@ -31,7 +31,7 @@ function drawOutro(svg, dimensions) {
         .attr('y', chartHeight/3)
         .attr('text-anchor', 'middle')
         .attr('font-size', fontSize)
-        .attr('dy', '.3em') 
+        .attr('dy', '.3em')
         .text(0)
 
     acreCount.transition()
@@ -48,7 +48,7 @@ function drawOutro(svg, dimensions) {
         .attr('x', chartWidth/2)
         .attr('y', chartHeight/3 + fontSize)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 30)
+        .attr('font-size', 20)
         .attr('dy', '.3em')
         .text("Total acres of potatoes planted")
     
@@ -63,7 +63,7 @@ function drawOutro(svg, dimensions) {
         .style("opacity", 0)
         .transition()
         .duration(650)
-        .style("opacity", 1)
+        .style("opacity", 0.5)
 
     const secondRow = chart.append("g")
 
@@ -79,7 +79,7 @@ function drawOutro(svg, dimensions) {
         .attr('x', 0)
         .attr('y', 2 * chartHeight/3 + fontSize)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 20)
+        .attr('font-size', 15)
         .attr('dy', '.3em')
         .text("Most popular variety grown")
 
@@ -94,7 +94,7 @@ function drawOutro(svg, dimensions) {
         .style("opacity", 0)
         .transition()
         .duration(650)
-        .style("opacity", 1)
+        .style("opacity", 0.5)
 
     const idaho = secondRow.append('text')
         .attr('x', chartWidth/2)
@@ -108,7 +108,7 @@ function drawOutro(svg, dimensions) {
         .attr('x', chartWidth/2)
         .attr('y', 2 * chartHeight/3 + fontSize)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 20)
+        .attr('font-size', 15)
         .attr('dy', '.3em')
         .text("Most potatoes planted")
 
@@ -123,21 +123,21 @@ function drawOutro(svg, dimensions) {
         .style("opacity", 0)
         .transition()
         .duration(650)
-        .style("opacity", 1)
+        .style("opacity", 0.5)
 
     const fries = secondRow.append('text')
-        .attr('x', chartWidth )
+        .attr('x', chartWidth)
         .attr('y', 2 * chartHeight/3)
         .attr('text-anchor', 'middle')
         .attr('font-size', fontSize)
         .attr('dy', '.3em') 
-        .text('French Fries')
+        .text('Fries')
 
     secondRow.append("text")
         .attr('x', chartWidth)
         .attr('y', 2 * chartHeight/3 + fontSize)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 20)
+        .attr('font-size', 15)
         .attr('dy', '.3em')
         .text("Most popular potato dish")
 
@@ -152,7 +152,7 @@ function drawOutro(svg, dimensions) {
         .style("opacity", 0)
         .transition()
         .duration(650)
-        .style("opacity", 1)
+        .style("opacity", 0.5)
 
     thirdRow = chart.append("g")
 
@@ -178,7 +178,7 @@ function drawOutro(svg, dimensions) {
         .attr('x', chartWidth/3)
         .attr('y', chartHeight)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 20)
+        .attr('font-size', 15)
         .attr('dy', '.3em')
         .text("Calories in a potato")
 
@@ -201,7 +201,7 @@ function drawOutro(svg, dimensions) {
         .style("opacity", 0)
         .transition()
         .duration(650)
-        .style("opacity", 1)
+        .style("opacity", 0.5)
 
     cost.transition()
         .duration(2000)
@@ -217,7 +217,7 @@ function drawOutro(svg, dimensions) {
         .attr('x',  2.5 * chartWidth/3)
         .attr('y', chartHeight)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 20)
+        .attr('font-size', 15)
         .attr('dy', '.3em')
         .text("Pounds of potatoes for $100")
 
@@ -232,6 +232,6 @@ function drawOutro(svg, dimensions) {
         .style("opacity", 0)
         .transition()
         .duration(650)
-        .style("opacity", 1)
+        .style("opacity", 0.5)
 
 }
