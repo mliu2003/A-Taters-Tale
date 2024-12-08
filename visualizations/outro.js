@@ -106,12 +106,12 @@ function drawOutro(svg, dimensions) {
     thirdRow = chart.append("g")
 
     const calories = thirdRow.append('text')
-    .attr('x', chartWidth/3)
-    .attr('y', chartHeight - 20)
-    .attr('text-anchor', 'middle')
-    .attr('font-size', fontSize)
-    .attr('dy', '.3em') 
-    .text(0)
+        .attr('x', chartWidth/3)
+        .attr('y', chartHeight - fontSize)
+        .attr('text-anchor', 'middle')
+        .attr('font-size', fontSize)
+        .attr('dy', '.3em') 
+        .text(0)
 
     calories.transition()
         .duration(2000)
@@ -125,14 +125,37 @@ function drawOutro(svg, dimensions) {
 
     thirdRow.append("text")
         .attr('x', chartWidth/3)
-        .attr('y', chartHeight + fontSize)
+        .attr('y', chartHeight)
         .attr('text-anchor', 'middle')
         .attr('font-size', 20)
         .attr('dy', '.3em')
-        .text("Total calories in a potato")
+        .text("Calories in a potato")
+
+        const cost = thirdRow.append('text')
+        .attr('x', 2.5 * chartWidth/3)
+        .attr('y', chartHeight - fontSize)
+        .attr('text-anchor', 'middle')
+        .attr('font-size', fontSize)
+        .attr('dy', '.3em') 
+        .text(0)
+
+    cost.transition()
+        .duration(2000)
+        .tween("text", function() {
+            const that = d3.select(this);
+            const i = d3.interpolateNumber(0, 122.64); 
+            return function(t) {
+                that.text(Math.round(i(t))); 
+            };
+        });
+
+    thirdRow.append("text")
+        .attr('x',  2.5 * chartWidth/3)
+        .attr('y', chartHeight)
+        .attr('text-anchor', 'middle')
+        .attr('font-size', 20)
+        .attr('dy', '.3em')
+        .text("Pounds of potatoes for $100")
 
 
-
-
-    
 }
