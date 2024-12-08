@@ -5,13 +5,30 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
     const columns = 4; 
     const maxSize = 230
 
+    svg.selectAll("*").remove();
+    var brush = d3.brush().extent([
+        [0, 0],
+        [width, height],
+      ]);
+
 
     d3.csv("data/greenhouse-gas-emissions-per-kilogram-of-food-product.csv").then((rawData) => {
         const gasEmissions = rawData.map((row) =>
             greenhouseGasDataPreprocessor(row)
         );
 
-        console.log(gasEmissions)
+        var toolTip = d3
+        .tip()
+        .attr("class", "d3-tip")
+        // .offset([-12, -10])
+        .html(function (event, d) {
+          return `<div>
+          <h5>${d.name}</h5>
+          <p>Emissions per kilogram planted: ${d.emissions_per_kg} kg of GHG</p>
+        </div>`;
+        });
+
+        svg.call(toolTip);
 
         var radiusScale = d3.scaleSqrt()
             .domain([0, d3.max(gasEmissions, d => d.emissions_per_kg)])
@@ -33,35 +50,41 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
             const y = row * (2 * circleRadius + padding) + circleRadius - 10;
             return { x, y };
             });
-        
+
         const images = svg.selectAll("image")
             .data(gasEmissions)
             .enter()
             .append("image")
-            .attr("x", (d, i) => positions[i].x)
-            .attr("y", (d, i) => positions[i].y)
-            .attr("width", d => radiusScale(d.emissions_per_kg))
-            .attr("height", d => radiusScale(d.emissions_per_kg))
+            // .on("mouseover", toolTip.show)
+            // .on("mouseout", toolTip.hide)
             .attr("href", "images/gas-cloud-drawing.png")
+            .attr("x", (d, i) => positions[i].x) 
+            .attr("y", (d, i) => positions[i].y + 200) 
+            .attr("width", 0)
+            .attr("height", 0) 
+            // .on("mouseover", toolTip.show)
+            // .on("mouseout", toolTip.hide)
+            .transition() 
+            .duration(2000) 
             .each(function (d, i) {
                 const size = radiusScale(d.emissions_per_kg);
-                // console.log(size)
                 d3.select(this)
                     .attr("x", positions[i].x + 100 / 2 - size / 2)
                     .attr("y", positions[i].y + 100 / 2 - size / 2);
             })
-            .transition()
-            .duration(2000) // Animation duration
-            .ease(d3.easeLinear) // Linear movement
-            .attr("x", (d, i) => positions[i].x + 100 / 2 - radiusScale(d.emissions_per_kg) / 2) // Final x
-            .attr("y", (d, i) => positions[i].y + 100 / 2 - radiusScale(d.emissions_per_kg) / 2) // Final y
-            .on("end", () => console.log("Animation completed")); // Debug
+            .attr("width", d => radiusScale(d.emissions_per_kg))
+            .attr("height", d => radiusScale(d.emissions_per_kg))
+            // .on("mouseover", toolTip.show)
+            // .on("mouseout", toolTip.hide)
+          
         
 
         const labels = svg.selectAll("text")
             .data(gasEmissions)
             .enter()
             .append("text")
+            .on("mouseover", toolTip.show)
+            .on("mouseout", toolTip.hide)
             .attr("x", (d, i) => positions[i].x + 100 / 2) 
             .attr("y", (d, i) => positions[i].y + 100 / 2)
             .attr("text-anchor", "middle")
@@ -71,10 +94,13 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
             .transition() // Fade in
             .delay(200) // Small delay
             .duration(2000)
-            .style("opacity", 1);;
+            .style("opacity", 1);
         
         const potatoData = gasEmissions.find(d => d.name === "Potatoes");
         const potatoIndex = gasEmissions.indexOf(potatoData);
+
+      
+            
 
         if (potatoData) {
             const potatoPosition = positions[potatoIndex];
@@ -96,12 +122,27 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
             .attr("height", height ) 
             .attr("href", "images/half-earth.png") 
             .lower()
+            .transition()
+            .duration(1500)
+            .style("transform", "scale(1)")
+            .style("opacity", 1);
+            
 
         svg.append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", "black")
+            .attr("fill", "rgb(140, 82, 45)")
             .lower()
+            .transition()
+            .duration(2000)
+            .attr("fill", "black");
+            
+   
+            
+            // .remove();
+       
+
+    
         
   
 
