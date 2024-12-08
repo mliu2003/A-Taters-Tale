@@ -1,17 +1,14 @@
 function drawPotatoTypes(svg, dimensions) {
  
   const { width, height } = dimensions;
-  const chartWidth = 800;
-  const chartHeight = 500;
+  const chartWidth = width/1.5;
+  const chartHeight = height/1.5;
   const offsetX = (width - chartWidth) / 2;
   const offsetY = (height - chartHeight) / 2;
 
 
   d3.csv("data/potatotypes2023.csv").then((rawData) => {
     const parsedData = rawData.map((row) => potatoTypesPreprocessor(row));
-
-    console.log(parsedData);
-    console.log(d3.max(parsedData, (d) => d.value));
 
     const yScale = d3
       .scaleLinear()

@@ -88,9 +88,6 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .attr("preserveAspectRatio", "xMidYMid meet")
       .attr("id", "potato-value-map");
     const mapBounds = svgMap.node().getBoundingClientRect();
-    console.log("Map bounds:", mapBounds);
-    console.log("Map width:", mapBounds.width);
-    console.log("Map height:", mapBounds.height);
     const mapwidth = mapBounds.width;
     const mapheight = mapBounds.height;
     const projection = d3
