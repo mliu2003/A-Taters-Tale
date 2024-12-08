@@ -1,8 +1,8 @@
 function drawPotatoTypes(svg, dimensions) {
  
   const { width, height } = dimensions;
-  const chartWidth = 800;
-  const chartHeight = 500;
+  const chartWidth = width/1.5;
+  const chartHeight = height/1.5;
   const offsetX = (width - chartWidth) / 2;
   const offsetY = (height - chartHeight) / 2;
 
