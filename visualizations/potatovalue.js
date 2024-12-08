@@ -75,12 +75,16 @@ function drawPotatoValueEfficiency(svg, dimensions) {
     var yScale = d3.scaleLinear().range([height, 0]);
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale);
+
+    const containerHeight = dimensions.height;
+    const viewBoxHeight = containerHeight * 2;
+    const viewBoxWidth = containerHeight * 2;
     const svgMap = d3
       .select("#map-container")
       .append("svg")
       .attr("width", "100%")
       .attr("height", "100%")
-      .attr("viewBox", `0 0 1000 500`)
+      .attr("viewBox", `0 0 ${viewBoxWidth} ${viewBoxHeight}`)
       .attr("preserveAspectRatio", "xMidYMid meet")
       .attr("id", "potato-value-map");
     const mapBounds = svgMap.node().getBoundingClientRect();
@@ -91,7 +95,7 @@ function drawPotatoValueEfficiency(svg, dimensions) {
     const mapheight = mapBounds.height;
     const projection = d3
       .geoNaturalEarth1()
-      .fitSize([mapwidth * 2.3, mapheight * 2.3], geoData);
+      .fitSize([mapwidth * 3.2, mapheight * 3.2], geoData);
 
     const pathGenerator = d3.geoPath().projection(projection);
     var states = [...new Set(dataset.map((d) => d.state))];
@@ -99,7 +103,7 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .scaleSequential()
       .domain(d3.extent(dataset, (d) => d.yieldValue))
       .interpolator((d) => {
-        if (d === 1) return "#D3D3D3";
+        if (d === 1) return "#A9A9A9";
         return d3.interpolateRgb("#08306b", "#ffffff")(d);
       });
     const mapGroup = svgMap
@@ -155,7 +159,7 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .brush()
       .extent([
         [0, 0],
-        [mapwidth * 2.5, mapheight * 2.5],
+        [mapwidth * 3.2, mapheight * 3.2],
       ])
       .on("brush", mapBrushmove)
       .on("end", mapBrushend);
@@ -199,7 +203,7 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .attr("x", width / 2)
       .attr("y", 40)
       .style("text-anchor", "middle")
-      .text(currentXAttr);
+      .text("Cost to Plant");
 
     scatterplotG
       .append("g")
@@ -211,7 +215,7 @@ function drawPotatoValueEfficiency(svg, dimensions) {
       .attr("x", -height / 2)
       .attr("y", -50)
       .style("text-anchor", "middle")
-      .text(currentYAttr);
+      .text("Value per Acre");
 
     scatterplotG.append("g").attr("class", "brush").call(brush);
 
