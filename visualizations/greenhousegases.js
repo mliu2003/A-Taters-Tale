@@ -55,15 +55,11 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
             .data(gasEmissions)
             .enter()
             .append("image")
-            // .on("mouseover", toolTip.show)
-            // .on("mouseout", toolTip.hide)
             .attr("href", "images/gas-cloud-drawing.png")
             .attr("x", (d, i) => positions[i].x) 
             .attr("y", (d, i) => positions[i].y + 200) 
             .attr("width", 0)
             .attr("height", 0) 
-            // .on("mouseover", toolTip.show)
-            // .on("mouseout", toolTip.hide)
             .transition() 
             .duration(2000) 
             .each(function (d, i) {
@@ -74,8 +70,6 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
             })
             .attr("width", d => radiusScale(d.emissions_per_kg))
             .attr("height", d => radiusScale(d.emissions_per_kg))
-            // .on("mouseover", toolTip.show)
-            // .on("mouseout", toolTip.hide)
           
         
 
@@ -90,9 +84,10 @@ function drawGreenhouseGasEmissions(svg, dimensions) {
             .attr("text-anchor", "middle")
             .attr("font-size", "12px")
             .attr("fill", "white")
+            .attr("opacity", 0)
             .text(d => d.name)
-            .transition() // Fade in
-            .delay(200) // Small delay
+            .transition() 
+            .delay(200) 
             .duration(2000)
             .style("opacity", 1);
         
