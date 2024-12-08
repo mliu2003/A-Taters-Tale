@@ -84,7 +84,7 @@ function update(svg, dimensions, vegetables, money) {
 
     g.append("text")
       .attr("text-anchor", "middle")
-      .attr("font-size", "18px")
+      .attr("font-size", "14px")
       .attr("fill", "black")
       .style("font-weight", "bold")
       .attr("id", "brand-label")
