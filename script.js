@@ -125,6 +125,8 @@ const updateVisualization = (stepIndex) => {
       break;
     case 5: // Production by State
       removeTruckOrAll(svg, dimensions);
+      clear();
+      drawPotatoProduction(svg, dimensions);
       break;
     case 6: // Price by Crop
       clear();

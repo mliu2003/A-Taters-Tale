@@ -1,0 +1,1 @@
+function drawPotatoProduction(svg, dimensions) {}
