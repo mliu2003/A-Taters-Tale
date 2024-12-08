@@ -1,4 +1,5 @@
 function drawPotatoTypes(svg, dimensions) {
+ 
   const { width, height } = dimensions;
   const chartWidth = 800;
   const chartHeight = 500;
@@ -95,6 +96,9 @@ function drawPotatoTypes(svg, dimensions) {
       .attr("font-size", "14px")
       .attr("fill", "black")
       .text("Acres Planted");
+    
+
+    chart.style("opacity", 0).transition().duration(1500).style("opacity", 1);
 
     svg.append("text")
       .attr("x", width / 2) 
@@ -104,6 +108,8 @@ function drawPotatoTypes(svg, dimensions) {
       .attr("font-weight", "bold")
       .attr("fill", "black")
       .text("Acres Planted by Variety"); 
+    
+   
 
     svg
       .append("image")
