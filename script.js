@@ -10,12 +10,12 @@ const spuddyText = [
   "The total amount of land used to plant potatoes in the United States in 2023 is about 131,000 acres.",
   "You're able to click and drag both the map above me and the scatter plot to see which points align with which state on the map. You can also hover over each point in the scatterplot to see the planting cost and yield value.",
   "We potatoes love riding trucks! It's like a road trip! Click on the different sections of the truck to learn some fun facts about potato transportation as well as the Big Idaho Potato Truck!",
-  "Did you know? Idaho is better than your bum state (at least in terms of potato production). Hover over each state to find out the exact amount of potatoes produced in each state.",
+  "Did you know? Idaho is better than your home state (at least in terms of potato production). Hover over each state to find out the exact amount of potatoes produced in each state.",
   "Toggle the radio buttons at the top to see how many pounds of each vegetable you're able to buy for the given amount!",
   "Looks like a pie chart of a well blaanced meal to me!",
   'Click on the images to learn more about each dish! My favorite are french fries!',
-  "slide 9",
-  "slide 10",
+  "I'm always confused by why consumers love chips. They're basically just buying air!",
+  "There are tons of variations that are made out of potatoes! Gnocchi is a potato pasta, and potato rolls/bread are a popular choice for sandwiches.",
   "Thanks for watching! Spuddy out.",
 ];
 
