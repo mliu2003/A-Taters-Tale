@@ -32,7 +32,7 @@ The project is also hosted at https://mliu2003.github.io/A-Taters-Tale/
 
 - Popular Chip Brands Data: Statista Research Department (2024) Sales of the leading potato chip brands of the United States in 2024
 
-- Potato Nutrition Data: 
+- Potato Nutrition Data: Dr. Jorge, Ph.D. Wildgrain
 
 
 ### Images
